@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaYoutube, FaMedium, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { FaYoutube, FaMedium, FaChevronLeft, FaChevronRight, FaPlay } from 'react-icons/fa';
 
 const videos = [
-  { title: "Kubernetes Explained in 10 Minutes", thumbnail: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "My AWS Certifications Journey", thumbnail: "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Terraform Best Practices for Infrastructure", thumbnail: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Dockerizing React Applications", thumbnail: "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "CI/CD Pipeline with GitHub Actions", thumbnail: "https://images.unsplash.com/photo-1618401479427-c8ef9465fbe1?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Prometheus & Grafana Monitoring Tutorial", thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&h=250&fit=crop", link: "#" },
+  { title: "Jenkins Tutorial for Beginners | Install, Setup & Run First Pipeline", thumbnail: "./src/assets/images/maxresdefault.jpg", link: "https://www.youtube.com/watch?v=8etoaL6szeY&t=526s" },
+  { title: "Dockerize React Apps Like a Pro: Live Updates with Volumes! 🐳⚛️", thumbnail: "./src/assets/images/maxresdefault (1).jpg", link: "https://youtu.be/HXarkxibt6s" },
+  { title: "What is Nodemon: Stop Restarting Your Node.js Server! 🚀", thumbnail: "./src/assets/images/maxresdefault (2).jpg", link: "https://youtu.be/Bm2Swjo-LVk" },
+  { title: "Docker for Beginners | Part 1 - What is Docker & Build Your First Container (Dockerfile Tutorial)", thumbnail: "./src/assets/images/maxresdefault (3).jpg", link: "https://youtu.be/wpfhxn5szmc" },
+  { title: "Docker Tutorial | Part 2 - How to Remove Containers & Images + Port Mapping Explained", thumbnail: "./src/assets/images/maxresdefault.webp", link: "https://youtu.be/b5cxuDrQQfw?si=G8Jp8ZltM7rWqIGB" },
   { title: "AWS ECS Deployment Deep Dive", thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&h=250&fit=crop", link: "#" },
   { title: "Nginx Reverse Proxy Basics", thumbnail: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400&h=250&fit=crop", link: "#" },
   { title: "Mastering CLI & Bash Scripts", thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=400&h=250&fit=crop", link: "#" },
 ];
 
 const articles = [
-  { title: "Scaling Node.js on EKS", date: "Oct 12, 2023", thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Why Terraform Cloud is a Gamechanger", date: "Sep 05, 2023", thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Securing CI/CD Pipelines with GitHub Actions", date: "Aug 20, 2023", thumbnail: "https://images.unsplash.com/photo-1618401479427-c8ef9465fbe1?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Managing Multi-Cloud Secrets Securely", date: "Jul 10, 2023", thumbnail: "https://images.unsplash.com/photo-1563206767-5b18f218e8de?q=80&w=400&h=250&fit=crop", link: "#" },
+  { title: "C programming-Introduction", date: "May 26, 2024", thumbnail: "./src/assets/images/medium_01.webp", link: "https://medium.com/@dilshansachiya671_17974/c-programming-introduction-9e07a18c8776" },
+  { title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", date: "April 03, 2026", thumbnail: "./src/assets/images/medium_02.webp", link: "https://medium.com/@dilshansachiya671_17974/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" },
+  { title: "What is MLOps: Why It's More Than Just Coding", date: "April 09, 2026", thumbnail: "./src/assets/images/medium_03.jpg", link: "" },
+  { title: "How I Solved My React + Node Backend Connection Issue with Nginx in My MERN Todo App", date: "April 08, 2026", thumbnail: "./src/assets/images/medium_04.jpg", link: "#" },
   { title: "The Ultimate AWS Services Architect Guide", date: "Jun 15, 2023", thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&h=250&fit=crop", link: "#" },
   { title: "Building Serverless Apps with AWS Lambda", date: "May 22, 2023", thumbnail: "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=400&h=250&fit=crop", link: "#" },
   { title: "A Guide to Zero-Downtime Blue-Green Deployments", date: "Apr 04, 2023", thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&h=250&fit=crop", link: "#" },
@@ -26,18 +25,113 @@ const articles = [
   { title: "Optimizing Frontend Build Pipelines", date: "Jan 12, 2023", thumbnail: "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=400&h=250&fit=crop", link: "#" },
 ];
 
-const ContentSection = () => {
-  const [expandVideos, setExpandVideos] = useState(false);
-  const visibleVideos = expandVideos ? videos : videos.slice(0, 6);
+const VideoCard = ({ vid }) => {
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 40, scale: 0.85, filter: "blur(10px)" },
+        visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { type: "spring", stiffness: 150, damping: 15 } }
+      }}
+      style={{ perspective: 1000 }}
+      className="relative w-full h-full"
+    >
+      <motion.a
+        href={vid.link}
+        whileHover={{
+          rotateX: 15,
+          rotateY: -15,
+          scale: 1.05,
+          z: 30,
+          boxShadow: "-20px 20px 40px rgba(220,38,38,0.15)"
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        style={{ transformStyle: "preserve-3d" }}
+        className="flex flex-col bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-2xl p-5 hover:border-red-500/30 group h-full"
+      >
+        <div className="rounded-xl overflow-hidden relative shadow-xl mb-5" style={{ transform: "translateZ(30px)" }}>
+          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
+            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 transition-all shadow-[0_0_20px_rgba(220,38,38,0.8)]">
+              <FaPlay className="text-white text-2xl ml-1" />
+            </div>
+          </div>
+          <img src={vid.thumbnail} alt={vid.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
+        </div>
 
-  const [expandArticles, setExpandArticles] = useState(false);
-  const visibleArticles = expandArticles ? articles : articles.slice(0, 6);
+        <h3 className="text-xl leading-snug font-bold text-gray-200 group-hover:text-white transition-colors line-clamp-2 px-2" style={{ transform: "translateZ(40px)" }}>
+          {vid.title}
+        </h3>
+        <div className="mt-auto px-2 pt-6 flex items-center gap-2 text-sm font-bold text-red-500 opacity-80 group-hover:opacity-100 transition-opacity" style={{ transform: "translateZ(20px)" }}>
+          Watch on YouTube <span className="text-lg">&rarr;</span>
+        </div>
+      </motion.a>
+    </motion.div>
+  );
+};
+
+const ArticleCard = ({ article }) => {
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 40, scale: 0.85, filter: "blur(10px)" },
+        visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { type: "spring", stiffness: 150, damping: 15 } }
+      }}
+      style={{ perspective: 1000 }}
+      className="relative w-full h-full"
+    >
+      <motion.a
+        href={article.link}
+        whileHover={{
+          rotateX: 15,
+          rotateY: -15,
+          scale: 1.05,
+          z: 30,
+          boxShadow: "-20px 20px 40px rgba(176,38,255,0.15)"
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        style={{ transformStyle: "preserve-3d" }}
+        className="flex flex-col bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-2xl p-5 hover:border-brand-purple/40 group h-full"
+      >
+        <div className="rounded-xl overflow-hidden relative shadow-xl mb-5" style={{ transform: "translateZ(30px)" }}>
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
+            <div className="w-16 h-16 bg-black border border-white/10 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 transition-all shadow-[0_0_20px_rgba(0,0,0,0.9)]">
+              <FaMedium className="text-white text-3xl" />
+            </div>
+          </div>
+          <img src={article.thumbnail} alt={article.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
+        </div>
+
+        <p className="px-2 text-xs font-mono text-gray-400 mb-2 group-hover:text-brand-cyan transition-colors" style={{ transform: "translateZ(20px)" }}>{article.date}</p>
+        <h3 className="text-xl leading-snug font-bold text-gray-200 group-hover:text-white transition-colors line-clamp-2 px-2" style={{ transform: "translateZ(40px)" }}>
+          {article.title}
+        </h3>
+        <div className="mt-auto px-2 pt-6 flex items-center gap-2 text-sm font-bold text-brand-purple opacity-80 group-hover:opacity-100 transition-opacity" style={{ transform: "translateZ(20px)" }}>
+          Read on Medium <span className="text-lg">&rarr;</span>
+        </div>
+      </motion.a>
+    </motion.div>
+  );
+};
+
+const ContentSection = () => {
+  const itemsPerPage = 3;
+
+  const [currentVideoPage, setCurrentVideoPage] = useState(0);
+  const totalVideoPages = Math.ceil(videos.length / itemsPerPage);
+  const handleNextVideo = () => setCurrentVideoPage((prev) => (prev + 1) % totalVideoPages);
+  const handlePrevVideo = () => setCurrentVideoPage((prev) => (prev - 1 + totalVideoPages) % totalVideoPages);
+  const visibleVideos = videos.slice(currentVideoPage * itemsPerPage, (currentVideoPage + 1) * itemsPerPage);
+
+  const [currentArticlePage, setCurrentArticlePage] = useState(0);
+  const totalArticlePages = Math.ceil(articles.length / itemsPerPage);
+  const handleNextArticle = () => setCurrentArticlePage((prev) => (prev + 1) % totalArticlePages);
+  const handlePrevArticle = () => setCurrentArticlePage((prev) => (prev - 1 + totalArticlePages) % totalArticlePages);
+  const visibleArticles = articles.slice(currentArticlePage * itemsPerPage, (currentArticlePage + 1) * itemsPerPage);
 
   return (
     <div className="bg-transparent relative border-t border-white/5">
       {/* YouTube Section */}
       <section id="videos" className="pt-24 pb-20">
-        <motion.div className="max-w-7xl mx-auto px-6">
+        <motion.div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -47,65 +141,63 @@ const ContentSection = () => {
             <div className="mb-12 border-l-4 border-brand-cyan pl-6">
               <div className="flex items-center gap-3">
                 <FaYoutube className="text-4xl text-red-500" />
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">NextOps <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Tube</span></h2>
+                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">You <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Tube</span></h2>
               </div>
-              <p className="text-gray-400 mt-3">Watch my latest tutorials and infrastructure deep-dives. Showing {expandVideos ? videos.length : 6} of {videos.length} videos.</p>
+              <p className="text-gray-400 mt-3">Watch my latest tutorials and infrastructure deep-dives. Showing {Math.min(currentVideoPage * itemsPerPage + 1, videos.length)}-{Math.min((currentVideoPage + 1) * itemsPerPage, videos.length)} of {videos.length} videos.</p>
             </div>
-            
-            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <AnimatePresence>
-                {visibleVideos.map((vid, i) => (
-                  <motion.a 
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3, delay: (i % 6) * 0.05 }}
-                    key={vid.title} 
-                    href={vid.link} 
-                    className="flex flex-col bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-2xl p-5 hover:border-red-500/30 hover:-translate-y-2 hover:shadow-[0_15px_35px_-10px_rgba(220,38,38,0.2)] transition-all duration-300 group"
-                  >
-                    <div className="rounded-xl overflow-hidden relative shadow-xl mb-5">
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
-                        <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 transition-all shadow-[0_0_20px_rgba(220,38,38,0.8)]">
-                          <FaYoutube className="text-white text-3xl ml-1" />
-                        </div>
-                      </div>
-                      <img src={vid.thumbnail} alt={vid.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
-                    </div>
-                    
-                    <h3 className="text-xl leading-snug font-bold text-gray-200 group-hover:text-white transition-colors line-clamp-2 px-2">
-                      {vid.title}
-                    </h3>
-                    <div className="mt-auto px-2 pt-6 flex items-center gap-2 text-sm font-bold text-red-500 opacity-80 group-hover:opacity-100 transition-opacity">
-                      Watch on YouTube <span className="text-lg">&rarr;</span>
-                    </div>
-                  </motion.a>
-                ))}
-              </AnimatePresence>
-            </motion.div>
 
-            {videos.length > 6 && (
-              <motion.div layout className="mt-14 flex justify-center">
+            <div className="relative">
+              {totalVideoPages > 1 && (
                 <button
-                  onClick={() => setExpandVideos(!expandVideos)}
-                  className="flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-red-500/30 text-white font-bold rounded-full hover:bg-red-500/10 hover:border-red-500/80 hover:shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-300"
+                  onClick={handlePrevVideo}
+                  className="absolute -left-6 md:-left-12 lg:-left-20 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-full hover:bg-red-500/20 hover:border-red-500/50 text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(220,38,38,0.4)]"
+                  aria-label="Previous Videos"
                 >
-                  {expandVideos ? (
-                    <>Collapse View <FaChevronUp className="text-red-500" /></>
-                  ) : (
-                    <>View All Videos <FaChevronDown className="text-red-500" /></>
-                  )}
+                  <FaChevronLeft size={18} className="text-red-500" />
                 </button>
-              </motion.div>
-            )}
+              )}
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentVideoPage}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+                    exit: {
+                      opacity: 0,
+                      y: 20,
+                      scale: 0.95,
+                      transition: { duration: 0.2, ease: "easeIn" }
+                    }
+                  }}
+                  className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full min-h-[300px]"
+                >
+                  {visibleVideos.map((vid) => (
+                    <VideoCard key={vid.title} vid={vid} />
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+
+              {totalVideoPages > 1 && (
+                <button
+                  onClick={handleNextVideo}
+                  className="absolute -right-6 md:-right-12 lg:-right-20 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-full hover:bg-red-500/20 hover:border-red-500/50 text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(220,38,38,0.4)]"
+                  aria-label="Next Videos"
+                >
+                  <FaChevronRight size={18} className="text-red-500" />
+                </button>
+              )}
+            </div>
           </motion.div>
         </motion.div>
       </section>
 
       {/* Blog Section */}
       <section id="articles" className="pt-16 pb-24">
-        <motion.div className="max-w-7xl mx-auto px-6">
+        <motion.div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -117,57 +209,54 @@ const ContentSection = () => {
                 <FaMedium className="text-4xl text-white" />
                 <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Articles</span></h2>
               </div>
-              <p className="text-gray-400 mt-3">Deep technical write-ups and architecture guides. Showing {expandArticles ? articles.length : 6} of {articles.length} articles.</p>
+              <p className="text-gray-400 mt-3">Deep technical write-ups and architecture guides. Showing {Math.min(currentArticlePage * itemsPerPage + 1, articles.length)}-{Math.min((currentArticlePage + 1) * itemsPerPage, articles.length)} of {articles.length} articles.</p>
             </div>
 
-            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <AnimatePresence>
-                {visibleArticles.map((article, i) => (
-                  <motion.a 
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3, delay: (i % 6) * 0.05 }}
-                    key={article.title} 
-                    href={article.link} 
-                    className="flex flex-col bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-2xl p-5 hover:border-brand-purple/40 hover:-translate-y-2 hover:shadow-[0_15px_35px_-10px_rgba(176,38,255,0.2)] transition-all duration-300 group"
-                  >
-                    <div className="rounded-xl overflow-hidden relative shadow-xl mb-5">
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
-                        <div className="w-16 h-16 bg-black border border-white/10 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 transition-all shadow-[0_0_20px_rgba(0,0,0,0.9)]">
-                          <FaMedium className="text-white text-3xl" />
-                        </div>
-                      </div>
-                      <img src={article.thumbnail} alt={article.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
-                    </div>
-                    
-                    <p className="px-2 text-xs font-mono text-gray-400 mb-2 group-hover:text-brand-cyan transition-colors">{article.date}</p>
-                    <h3 className="text-xl leading-snug font-bold text-gray-200 group-hover:text-white transition-colors line-clamp-2 px-2">
-                      {article.title}
-                    </h3>
-                    <div className="mt-auto px-2 pt-6 flex items-center gap-2 text-sm font-bold text-brand-purple opacity-80 group-hover:opacity-100 transition-opacity">
-                      Read on Medium <span className="text-lg">&rarr;</span>
-                    </div>
-                  </motion.a>
-                ))}
-              </AnimatePresence>
-            </motion.div>
-
-            {articles.length > 6 && (
-              <motion.div layout className="mt-14 flex justify-center">
+            <div className="relative">
+              {totalArticlePages > 1 && (
                 <button
-                  onClick={() => setExpandArticles(!expandArticles)}
-                  className="flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-brand-purple/30 text-white font-bold rounded-full hover:bg-brand-purple/10 hover:border-brand-purple/60 hover:shadow-[0_0_20px_rgba(176,38,255,0.4)] transition-all duration-300"
+                  onClick={handlePrevArticle}
+                  className="absolute -left-6 md:-left-12 lg:-left-20 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-full hover:bg-brand-purple/20 hover:border-brand-purple/50 text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(176,38,255,0.4)]"
+                  aria-label="Previous Articles"
                 >
-                  {expandArticles ? (
-                    <>Collapse View <FaChevronUp className="text-brand-cyan" /></>
-                  ) : (
-                    <>View All Articles <FaChevronDown className="text-brand-cyan" /></>
-                  )}
+                  <FaChevronLeft size={18} className="text-brand-purple" />
                 </button>
-              </motion.div>
-            )}
+              )}
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentArticlePage}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+                    exit: {
+                      opacity: 0,
+                      y: 20,
+                      scale: 0.95,
+                      transition: { duration: 0.2, ease: "easeIn" }
+                    }
+                  }}
+                  className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full min-h-[300px]"
+                >
+                  {visibleArticles.map((article) => (
+                    <ArticleCard key={article.title} article={article} />
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+
+              {totalArticlePages > 1 && (
+                <button
+                  onClick={handleNextArticle}
+                  className="absolute -right-6 md:-right-12 lg:-right-20 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-full hover:bg-brand-purple/20 hover:border-brand-purple/50 text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(176,38,255,0.4)]"
+                  aria-label="Next Articles"
+                >
+                  <FaChevronRight size={18} className="text-brand-purple" />
+                </button>
+              )}
+            </div>
           </motion.div>
         </motion.div>
       </section>

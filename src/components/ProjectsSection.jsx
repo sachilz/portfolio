@@ -98,6 +98,7 @@ const ProjectCard = ({ project, index }) => {
         ref={ref}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        whileHover={{ scale: 1.03, y: -5 }}
         style={{
           rotateY,
           rotateX,
