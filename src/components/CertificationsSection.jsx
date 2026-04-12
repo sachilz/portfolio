@@ -3,25 +3,25 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { FaAward, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const certs = [
-  { name: 'AI/ML Engineer - Stage 1', issue: 'SLIIT', year: '2024' },
-  { name: 'Python For Beginners', issue: 'University of Moratuwa', year: '2025' },
-  { name: 'Python For Beginners', issue: 'Simplilearn', year: '2025' },
-  { name: 'AI/ML Engineer - Stage 2', issue: 'SLIIT', year: '2025' },
-  { name: 'Postman API Fundamentals Student Expert', issue: 'Postman', year: '2025' },
-  { name: 'Crash Course: Linux For Absolute Beginners', issue: 'KodeKloud', year: '2025' },
-  { name: 'Fundamentals of DevOps', issue: 'KodeKloud', year: '2025' },
-  { name: 'DevOps Pre-Requisite Course', issue: 'KodeKloud', year: '2025' },
-  { name: 'Golang', issue: 'KodeKloud', year: '2025' },
-  { name: 'Python Basics', issue: 'KodeKloud', year: '2025' },
-  { name: 'Shell Scripts for Beginners', issue: 'KodeKloud', year: '2025' },
-  { name: 'Jenkins For Beginners', issue: 'KodeKloud', year: '2025' },
-  { name: 'Jenkins Pipelines', issue: 'KodeKloud', year: '2025' },
-  { name: 'GIT for Beginners', issue: 'KodeKloud', year: '2025' },
-  { name: 'Docker Training Course for the Absolute Beginner', issue: 'KodeKloud', year: '2025' },
-  { name: 'Kubernetes for the Absolute Beginners - Hands-on Tutorial', issue: 'KodeKloud', year: '2025' },
-  { name: 'Terraform Basics Training Course', issue: 'KodeKloud', year: '2025' },
-  { name: 'AWS For Beginners with Hands-On Labs', issue: 'KodeKloud', year: '2025' },
-  { name: 'Learning Linux Basics Course & Labs', issue: 'KodeKloud', year: '2025' },
+  { name: 'AI/ML Engineer - Stage 1', issue: 'SLIIT', year: '2024', image: './src/assets/Cert/1.png' },
+  { name: 'Python For Beginners', issue: 'University of Moratuwa', year: '2025', image: './src/assets/Cert/4.png' },
+  { name: 'Python For Beginners', issue: 'Simplilearn', year: '2025', image: './src/assets/Cert/3.png' },
+  { name: 'AI/ML Engineer - Stage 2', issue: 'SLIIT', year: '2025', image: './src/assets/Cert/1.png' },
+  { name: 'Postman API Fundamentals Student Expert', issue: 'Postman', year: '2025', image: './src/assets/Cert/2.png' },
+  { name: 'Crash Course: Linux For Absolute Beginners', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/5.png' },
+  { name: 'Fundamentals of DevOps', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/6.png' },
+  { name: 'DevOps Pre-Requisite Course', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/7.png' },
+  { name: 'Golang', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/8.png' },
+  { name: 'Python Basics', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/9.png' },
+  { name: 'Shell Scripts for Beginners', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/10.png' },
+  { name: 'Jenkins For Beginners', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/11.png' },
+  { name: 'Jenkins Pipelines', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/12.png' },
+  { name: 'GIT for Beginners', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/13.png' },
+  { name: 'Docker Training Course for the Absolute Beginner', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/14.png' },
+  { name: 'Kubernetes for the Absolute Beginners - Hands-on Tutorial', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/15.png' },
+  { name: 'Terraform Basics Training Course', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/16.png' },
+  { name: 'AWS For Beginners with Hands-On Labs', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/17.png' },
+  { name: 'Learning Linux Basics Course & Labs', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/5.png' },
 ];
 
 const CertCard = ({ cert }) => {
@@ -50,42 +50,30 @@ const CertCard = ({ cert }) => {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         style={{ transformStyle: "preserve-3d" }}
-        className="relative bg-[#0a0a0a] border border-brand-cyan/20 rounded-2xl p-7 group flex flex-col h-full z-10 overflow-hidden"
+        className="relative bg-[#0a0a0a] border border-white/10 rounded-2xl p-5 hover:border-brand-cyan/40 group flex flex-col h-full z-10 overflow-hidden transition-colors"
       >
-        {/* Certificate Thumbnail Full Background */}
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700 z-0 mix-blend-luminosity hover:mix-blend-normal"
-          style={{ backgroundImage: `url(${cert.image})` }}
-        ></div>
-
-        {/* Deep shadow overlay to ensure text readable */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]/40 z-0 pointer-events-none"></div>
-
-        {/* Spotlight gradient effect inside the card */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-brand-cyan/30 blur-[50px] rounded-full group-hover:bg-brand-cyan/50 transition-colors duration-700 pointer-events-none z-0"></div>
-        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-brand-purple/30 blur-[50px] rounded-full group-hover:bg-brand-purple/50 transition-colors duration-700 pointer-events-none z-0"></div>
-
-        {/* Animated top glowing border line */}
-        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-cyan to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center pointer-events-none"></div>
-
-        <div className="flex items-start justify-between mb-8 relative z-20" style={{ transform: "translateZ(40px)" }}>
-          <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-cyan group-hover:scale-110 group-hover:rotate-[360deg] transition-all duration-700 shadow-lg group-hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]">
-            <FaAward size={26} />
+        <div className="rounded-xl overflow-hidden relative shadow-xl mb-5 bg-[#111]" style={{ transform: "translateZ(30px)" }}>
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300 z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
+            <div className="w-16 h-16 bg-[#0a0a0a] border border-brand-cyan/30 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 group-hover:rotate-[280deg] transition-all duration-300 shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+              <FaAward className="text-brand-cyan text-3xl" />
+            </div>
           </div>
-          <div className="px-3 py-1.5 bg-brand-purple/10 border border-brand-purple/30 text-brand-cyan rounded-full text-xs font-mono font-bold tracking-wider group-hover:bg-brand-purple/20 transition-colors shadow-sm">
-            {cert.year}
-          </div>
+          {cert.image ? (
+            <img src={cert.image} alt={cert.name} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
+          ) : (
+            <div className="w-full h-56 flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#050505]">
+              <span className="text-gray-600 font-mono text-xs tracking-widest uppercase">Image Pending</span>
+            </div>
+          )}
         </div>
 
-        <h3 className="text-xl leading-snug font-extrabold text-white/90 mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-brand-cyan transition-all duration-300 relative z-20" style={{ transform: "translateZ(50px)" }}>
+        <p className="px-2 text-xs font-mono text-gray-400 mb-2 group-hover:text-brand-cyan transition-colors" style={{ transform: "translateZ(20px)" }}>{cert.year}</p>
+        <h3 className="text-lg leading-snug font-bold text-gray-200 group-hover:text-white transition-colors line-clamp-2 px-2" style={{ transform: "translateZ(40px)" }}>
           {cert.name}
         </h3>
 
-        <div className="flex items-center gap-3 mt-auto pt-5 border-t border-white/10 relative z-20" style={{ transform: "translateZ(30px)" }}>
-          <span className="w-2 h-2 rounded-full bg-brand-purple shadow-[0_0_8px_rgba(176,38,255,0.8)]"></span>
-          <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors">
-            {cert.issue}
-          </p>
+        <div className="mt-auto px-2 pt-6 flex items-center gap-2 text-sm font-bold text-brand-purple opacity-80 group-hover:opacity-100 transition-opacity" style={{ transform: "translateZ(20px)" }}>
+          Issued by {cert.issue}
         </div>
       </motion.div>
     </motion.div>
@@ -130,7 +118,7 @@ const CertificationsSection = () => {
           <p className="text-gray-400 mt-2">Verified expertise. Showing {Math.min(currentPage * itemsPerPage + 1, certs.length)}-{Math.min((currentPage + 1) * itemsPerPage, certs.length)} of {certs.length} certificates.</p>
         </motion.div>
 
-        <div className="relative">
+        <div className="relative min-h-[420px]">
           {totalPages > 1 && (
             <button
               onClick={handlePrev}

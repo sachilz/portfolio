@@ -7,22 +7,13 @@ const videos = [
   { title: "Dockerize React Apps Like a Pro: Live Updates with Volumes! 🐳⚛️", thumbnail: "./src/assets/images/maxresdefault (1).jpg", link: "https://youtu.be/HXarkxibt6s" },
   { title: "What is Nodemon: Stop Restarting Your Node.js Server! 🚀", thumbnail: "./src/assets/images/maxresdefault (2).jpg", link: "https://youtu.be/Bm2Swjo-LVk" },
   { title: "Docker for Beginners | Part 1 - What is Docker & Build Your First Container (Dockerfile Tutorial)", thumbnail: "./src/assets/images/maxresdefault (3).jpg", link: "https://youtu.be/wpfhxn5szmc" },
-  { title: "Docker Tutorial | Part 2 - How to Remove Containers & Images + Port Mapping Explained", thumbnail: "./src/assets/images/maxresdefault.webp", link: "https://youtu.be/b5cxuDrQQfw?si=G8Jp8ZltM7rWqIGB" },
-  { title: "AWS ECS Deployment Deep Dive", thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Nginx Reverse Proxy Basics", thumbnail: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Mastering CLI & Bash Scripts", thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=400&h=250&fit=crop", link: "#" },
+  { title: "Docker Tutorial | Part 2 - How to Remove Containers & Images + Port Mapping Explained", thumbnail: "./src/assets/images/maxresdefault.webp", link: "https://youtu.be/b5cxuDrQQfw?si=G8Jp8ZltM7rWqIGB" }
 ];
 
 const articles = [
   { title: "C programming-Introduction", date: "May 26, 2024", thumbnail: "./src/assets/images/medium_01.webp", link: "https://medium.com/@dilshansachiya671_17974/c-programming-introduction-9e07a18c8776" },
   { title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", date: "April 03, 2026", thumbnail: "./src/assets/images/medium_02.webp", link: "https://medium.com/@dilshansachiya671_17974/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" },
-  { title: "What is MLOps: Why It's More Than Just Coding", date: "April 09, 2026", thumbnail: "./src/assets/images/medium_03.jpg", link: "" },
-  { title: "How I Solved My React + Node Backend Connection Issue with Nginx in My MERN Todo App", date: "April 08, 2026", thumbnail: "./src/assets/images/medium_04.jpg", link: "#" },
-  { title: "The Ultimate AWS Services Architect Guide", date: "Jun 15, 2023", thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Building Serverless Apps with AWS Lambda", date: "May 22, 2023", thumbnail: "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "A Guide to Zero-Downtime Blue-Green Deployments", date: "Apr 04, 2023", thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Advanced Database Migration Strategies", date: "Feb 28, 2023", thumbnail: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=400&h=250&fit=crop", link: "#" },
-  { title: "Optimizing Frontend Build Pipelines", date: "Jan 12, 2023", thumbnail: "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=400&h=250&fit=crop", link: "#" },
+  { title: "What is MLOps: Why It's More Than Just Coding", date: "April 09, 2026", thumbnail: "./src/assets/images/medium_03.jpg", link: "" }
 ];
 
 const VideoCard = ({ vid }) => {
@@ -46,7 +37,7 @@ const VideoCard = ({ vid }) => {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         style={{ transformStyle: "preserve-3d" }}
-        className="flex flex-col bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-2xl p-5 hover:border-red-500/30 group h-full"
+        className="relative bg-[#0a0a0a] border border-white/10 rounded-2xl p-5 hover:border-red-500/30 group flex flex-col h-full z-10 overflow-hidden transition-colors"
       >
         <div className="rounded-xl overflow-hidden relative shadow-xl mb-5" style={{ transform: "translateZ(30px)" }}>
           <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
@@ -89,7 +80,7 @@ const ArticleCard = ({ article }) => {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         style={{ transformStyle: "preserve-3d" }}
-        className="flex flex-col bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-2xl p-5 hover:border-brand-purple/40 group h-full"
+        className="relative bg-[#0a0a0a] border border-white/10 rounded-2xl p-5 hover:border-brand-purple/40 group flex flex-col h-full z-10 overflow-hidden transition-colors"
       >
         <div className="rounded-xl overflow-hidden relative shadow-xl mb-5" style={{ transform: "translateZ(30px)" }}>
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
@@ -146,7 +137,7 @@ const ContentSection = () => {
               <p className="text-gray-400 mt-3">Watch my latest tutorials and infrastructure deep-dives. Showing {Math.min(currentVideoPage * itemsPerPage + 1, videos.length)}-{Math.min((currentVideoPage + 1) * itemsPerPage, videos.length)} of {videos.length} videos.</p>
             </div>
 
-            <div className="relative">
+            <div className="relative min-h-[400px]">
               {totalVideoPages > 1 && (
                 <button
                   onClick={handlePrevVideo}
@@ -212,7 +203,7 @@ const ContentSection = () => {
               <p className="text-gray-400 mt-3">Deep technical write-ups and architecture guides. Showing {Math.min(currentArticlePage * itemsPerPage + 1, articles.length)}-{Math.min((currentArticlePage + 1) * itemsPerPage, articles.length)} of {articles.length} articles.</p>
             </div>
 
-            <div className="relative">
+            <div className="relative min-h-[420px]">
               {totalArticlePages > 1 && (
                 <button
                   onClick={handlePrevArticle}

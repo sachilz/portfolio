@@ -4,52 +4,25 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const projects = [
   {
-    title: 'Cloud-Native Microservices Deployment',
-    description: 'Designed and deployed a highly available Kubernetes cluster spanning multiple AWS zones. Fully automated using Terraform and ArgoCD.',
-    tech: ['Kubernetes', 'AWS EKS', 'Terraform', 'ArgoCD'],
-    github: '#',
-    live: '#',
-    image: '/projects/cloud-native.png',
+    title: 'User-Management-App-with-Jenkins-DevSecOps-Pipeline',
+    description: 'A containerized MERN stack application featuring an Nginx reverse proxy, Docker Compose orchestration, and seamless service communication.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Docker', 'Jenkins'],
+    github: 'https://github.com/sachilz/User-Management-App-with-Jenkins-DevSecOps-Pipeline',
+    image: './src/assets/project-pic/1.jpeg',
   },
   {
-    title: 'Serverless Data Pipeline',
-    description: 'Built an event-driven data pipeline using AWS Lambda, SQS, and DynamoDB for real-time analytics processing.',
-    tech: ['AWS Lambda', 'DynamoDB', 'Python', 'Serverless Framework'],
-    github: '#',
-    live: '#',
-    image: '/projects/serverless.png',
+    title: 'CGPA Calculator',
+    description: 'This is a project for a CGPA calculator or tracking system. The application purpose is likely to compute a students Grade Point Average based on their academic data.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/sachilz/GPA-Calculator',
+    image: './src/assets/project-pic/2.jpeg',
   },
   {
-    title: 'Zero-Downtime Migration Tool',
-    description: 'A modern CLI tool written in Go to automate database migrations across multi-tenant environments with zero downtime.',
-    tech: ['Golang', 'PostgreSQL', 'Docker'],
-    github: '#',
-    live: '#',
-    image: '/projects/migration.png',
-  },
-  {
-    title: 'Real-Time Collaboration Platform',
-    description: 'Developed an offline-first collaborative workspace using WebSockets, Yjs, and React. Ensures deep synchronicity.',
-    tech: ['React', 'Node.js', 'Socket.io', 'Redis'],
-    github: '#',
-    live: '#',
-    image: '/projects/realtime.png',
-  },
-  {
-    title: 'AI-Powered Log Analyzer',
-    description: 'Created a machine learning pipeline that automatically highlights anomalies in complex system logs using TensorFlow.',
-    tech: ['Python', 'TensorFlow', 'ELK Stack'],
-    github: '#',
-    live: '#',
-    image: '/projects/analyzer.png',
-  },
-  {
-    title: 'Automated CI/CD Dashboard',
-    description: 'A dedicated visualization panel for GitHub Actions that tracks deployment frequencies, failure rates, and build times.',
-    tech: ['Vue.js', 'Go', 'GitHub APIs'],
-    github: '#',
-    live: '#',
-    image: '/projects/cicd.png',
+    title: 'CI/CD Enabled MERN Stack Todo Application (DevSecOps Project)',
+    description: 'A production-style MERN To-Do application containerized with Docker, orchestrated using Docker Compose, and deployed with Nginx reverse proxy',
+    tech: ['React', 'Node.js', 'MongoDB', 'Docker', 'Jenkins', 'Nginx'],
+    github: 'https://github.com/sachilz/CI-CD-Enabled-MERN-Stack-Todo-Application',
+    image: './src/assets/project-pic/3.jpeg',
   }
 ];
 
@@ -107,7 +80,7 @@ const ProjectCard = ({ project, index }) => {
         className="group h-full flex flex-col"
       >
         {/* Project Image */}
-        <div 
+        <div
           className="h-48 xl:h-56 w-full bg-cover bg-center rounded-xl mb-6 shadow-xl relative overflow-hidden brightness-110 group-hover:brightness-125 transition-all duration-500"
           style={{ backgroundImage: `url(${project.image})`, transform: "translateZ(30px)" }}
         >
@@ -118,11 +91,11 @@ const ProjectCard = ({ project, index }) => {
           <h3 className="text-xl font-bold text-brand-cyan mb-3" style={{ transform: "translateZ(50px)" }}>
             {project.title}
           </h3>
-          
+
           <p className="text-gray-400 text-sm mb-5 leading-relaxed flex-grow" style={{ transform: "translateZ(30px)" }}>
             {project.description}
           </p>
-          
+
           <div className="flex flex-wrap gap-2 mb-6" style={{ transform: "translateZ(25px)" }}>
             {project.tech.map((tech) => (
               <span key={tech} className="text-xs font-medium text-white px-3 py-1 rounded-full border border-brand-cyan/70 bg-transparent">
@@ -132,10 +105,6 @@ const ProjectCard = ({ project, index }) => {
           </div>
 
           <div className="flex flex-wrap gap-4 mt-auto pt-2" style={{ transform: "translateZ(35px)" }}>
-            <a href={project.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/20 hover:border-white text-white px-4 py-2 rounded-xl text-sm transition-colors w-max flex-shrink-0">
-              <FaExternalLinkAlt size={12} />
-              See Details
-            </a>
             <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-brand-cyan/20 hover:border-brand-cyan text-gray-300 hover:text-brand-cyan px-4 py-2 rounded-xl text-sm transition-colors w-max flex-shrink-0">
               <FaGithub size={14} />
               Source Code
@@ -150,7 +119,7 @@ const ProjectCard = ({ project, index }) => {
 const ProjectsSection = () => {
   return (
     <section id="projects" className="py-24 bg-transparent relative z-10 border-t border-white/5">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}

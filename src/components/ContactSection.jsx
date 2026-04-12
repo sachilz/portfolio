@@ -1,94 +1,338 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaPaperPlane, FaGithub, FaLinkedin, FaEnvelope, FaDiscord } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaEnvelope, FaYoutube, FaTerminal, FaMapMarkerAlt, FaCheckCircle, FaNetworkWired } from 'react-icons/fa';
 
-const ContactCard = ({ icon, title, detail, color, borderHover, shadowHover }) => (
-  <motion.a
-    href="#"
-    initial={{ opacity: 0, x: 50 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true }}
-    className={`flex items-center gap-6 p-6 bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-2xl transition-all duration-300 group hover:-translate-y-1 ${borderHover} ${shadowHover}`}
-  >
-    <div className={`w-14 h-14 rounded-full bg-white/5 border border-white/10 flex flex-shrink-0 items-center justify-center text-2xl ${color} group-hover:scale-110 transition-transform shadow-lg`}>
-      {icon}
-    </div>
-    <div>
-      <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all">{title}</h3>
-      <p className="text-sm font-mono text-gray-500 mt-1 group-hover:text-gray-400 transition-colors">{detail}</p>
-    </div>
-  </motion.a>
-);
+const socials = [
+  { icon: <FaLinkedin size={20} />, href: 'https://www.linkedin.com/in/sachilz/', color: 'hover:text-[#0A66C2]', label: 'LinkedIn' },
+  { icon: <FaGithub size={20} />, href: 'https://github.com/sachilz', color: 'hover:text-white', label: 'GitHub' },
+  { icon: <FaYoutube size={20} />, href: 'https://www.youtube.com/@NextOpz', color: 'hover:text-[#FF0000]', label: 'YouTube' },
+  { icon: <FaEnvelope size={20} />, href: 'mailto:dilshansachintha322@gmail.com', color: 'hover:text-red-500', label: 'Email' },
+];
+
+const TypewriterText = ({ text, delay = 0, onComplete }) => {
+  const [displayText, setDisplayText] = useState('');
+
+  useEffect(() => {
+    let timeout;
+    let currentIndex = 0;
+
+    const typeChar = () => {
+      if (currentIndex <= text.length) {
+        setDisplayText(text.substring(0, currentIndex));
+        currentIndex++;
+        timeout = setTimeout(typeChar, 30); // Typing speed
+      } else if (onComplete) {
+        onComplete();
+      }
+    };
+
+    const initialDelay = setTimeout(typeChar, delay);
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(initialDelay);
+    };
+  }, [text, delay]);
+
+  return <span>{displayText}</span>;
+};
 
 const ContactSection = () => {
-  return (
-    <section id="contact" className="py-24 relative overflow-hidden flex items-center justify-center min-h-[80vh]">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-purple/5 -z-10 pointer-events-none"></div>
+  const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('idle'); // idle, sending, success
+  const [activeInput, setActiveInput] = useState(null);
 
-      <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-7xl w-full mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16"
-      >
-        {/* Left side: Header and Form */}
-        <div>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStatus('sending');
+    setTimeout(() => {
+      setStatus('success');
+      setTimeout(() => {
+        setStatus('idle');
+        setFormState({ name: '', email: '', message: '' });
+      }, 4000);
+    }, 1500);
+  };
+
+  const handleInputChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <section id="contact" className="py-28 relative overflow-hidden flex items-center min-h-screen">
+      {/* Background accents */}
+      <div className="absolute top-1/4 -right-1/4 w-[800px] h-[800px] bg-brand-cyan/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-1/4 w-[800px] h-[800px] bg-brand-purple/5 rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 md:px-12 w-full relative z-10">
+
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-4 flex items-center justify-center gap-4">
+            <FaTerminal className="text-brand-cyan" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Initialize Connection</span>
+          </h2>
+          <p className="text-gray-400 max-w-xl mx-auto font-mono text-sm uppercase tracking-widest">
+            Execute protocol to establish communication
+          </p>
+        </motion.div>
+
+        <div className="flex flex-col lg:flex-row gap-8 items-stretch justify-center">
+
+          {/* Terminal Window */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-12 border-l-4 border-brand-cyan pl-6"
+            transition={{ duration: 0.5, type: 'spring' }}
+            className="w-full lg:w-2/3 bg-[#0a0a0f]/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden shadow-brand-cyan/10 relative"
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Connect</span></h2>
-            <p className="text-gray-400 mt-2">Open for opportunities or just a chat about infrastructure!</p>
+            {/* Terminal Top Bar */}
+            <div className="bg-[#1a1a24] px-4 py-3 flex items-center border-b border-white/5 relative">
+              <div className="flex gap-2 relative z-10">
+                <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <span className="text-xs text-gray-500 font-mono tracking-wider">visitor@sachilz-sys:~</span>
+              </div>
+            </div>
+
+            {/* Terminal Content */}
+            <div className="p-6 md:p-8 font-mono text-sm md:text-base relative w-full h-full min-h-[400px] flex flex-col">
+
+              {/* Scanline overlay */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.02),rgba(255,255,255,0))] bg-[length:100%_4px] opacity-20 pointer-events-none z-0"></div>
+
+              <div className="relative z-10 flex flex-col gap-4 flex-grow">
+
+                <div className="text-gray-400">
+                  <span className="text-brand-cyan font-bold">visitor@sachilz-sys</span>:<span className="text-brand-purple">~</span>$ ./contact_me.sh
+                </div>
+
+                <div className="text-gray-300">
+                  <TypewriterText text="Initializing secure handshake..." delay={500} />
+                </div>
+
+                <div className="text-emerald-400">
+                  <TypewriterText text="Connection established on port 443." delay={1500} />
+                </div>
+
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4 relative">
+
+                  {/* Name Input */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 group">
+                    <label htmlFor="name" className="text-brand-cyan flex whitespace-nowrap min-w-[120px]">
+                      <span className="text-gray-500 opacity-50 mr-2">&gt;</span>
+                      var name =
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      value={formState.name}
+                      onChange={handleInputChange}
+                      onFocus={() => setActiveInput('name')}
+                      onBlur={() => setActiveInput(null)}
+                      className="bg-transparent border-b border-transparent focus:border-brand-cyan outline-none text-white w-full transition-colors pb-1 placeholder-white/20 caret-brand-cyan shadow-none"
+                      placeholder="'Sachintha'"
+                      disabled={status !== 'idle'}
+                    />
+                  </div>
+
+                  {/* Email Input */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 group">
+                    <label htmlFor="email" className="text-brand-purple flex whitespace-nowrap min-w-[120px]">
+                      <span className="text-gray-500 opacity-50 mr-2">&gt;</span>
+                      var email =
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formState.email}
+                      onChange={handleInputChange}
+                      onFocus={() => setActiveInput('email')}
+                      onBlur={() => setActiveInput(null)}
+                      className="bg-transparent border-b border-transparent focus:border-brand-purple outline-none text-white w-full transition-colors pb-1 placeholder-white/20 caret-brand-purple"
+                      placeholder="'Sachintha@example.com'"
+                      disabled={status !== 'idle'}
+                    />
+                  </div>
+
+                  {/* Message Textarea */}
+                  <div className="flex flex-col group mt-2 relative">
+                    <label htmlFor="message" className="text-emerald-400 flex items-start mb-1">
+                      <span className="text-gray-500 opacity-50 mr-2">&gt;</span>
+                      const message = `
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      required
+                      value={formState.message}
+                      onChange={handleInputChange}
+                      onFocus={() => setActiveInput('message')}
+                      onBlur={() => setActiveInput(null)}
+                      className="bg-transparent border-l-2 border-emerald-400/30 focus:border-emerald-400 outline-none text-white w-full transition-colors pl-4 ml-6 resize-none placeholder-white/20 caret-emerald-400 mt-1"
+                      placeholder="Hi Sachilz, I have a project for you..."
+                      disabled={status !== 'idle'}
+                    />
+                    <span className="text-emerald-400 ml-6 mt-1">`</span>
+                  </div>
+
+                  {/* Submit Button & Status */}
+                  <div className="mt-8 flex items-center gap-4">
+                    <AnimatePresence mode="wait">
+                      {status === 'idle' && (
+                        <motion.button
+                          key="submit-btn"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          type="submit"
+                          className="px-6 py-2 bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/20 hover:shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all duration-300 flex items-center gap-2"
+                        >
+                          <span className="text-gray-500 mr-1">$</span>
+                          ./execute payload
+                        </motion.button>
+                      )}
+
+                      {status === 'sending' && (
+                        <motion.div
+                          key="sending-state"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-3 text-yellow-400"
+                        >
+                          <FaNetworkWired className="animate-pulse" />
+                          <span className="animate-pulse">Transmitting packets...</span>
+                        </motion.div>
+                      )}
+
+                      {status === 'success' && (
+                        <motion.div
+                          key="success-state"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-2 text-emerald-400 bg-emerald-400/10 px-4 py-2 border border-emerald-400/30"
+                        >
+                          <FaCheckCircle />
+                          <span>Transmission successful. Connection closed.</span>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Blinking Cursor if idle and no input focused */}
+                    {status === 'idle' && !activeInput && (
+                      <motion.div
+                        animate={{ opacity: [1, 0] }}
+                        transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse' }}
+                        className="w-3 h-5 bg-white/50"
+                      />
+                    )}
+                  </div>
+                </form>
+
+              </div>
+            </div>
           </motion.div>
 
-          <motion.form
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+          {/* Right Info Column */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative bg-[#0a0f1a]/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-10 shadow-[0_0_40px_rgba(0,0,0,0.5)] group"
-            onSubmit={(e) => e.preventDefault()}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full lg:w-1/3 flex flex-col gap-6"
           >
-            {/* Ambient form glow */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-brand-cyan/20 to-brand-purple/20 rounded-[2rem] blur-xl opacity-50 group-hover:opacity-100 transition duration-1000 -z-10"></div>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold ml-1">Name</label>
-                <input type="text" className="w-full bg-[#111827]/60 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-cyan/50 focus:border-brand-cyan/30 transition-all font-mono text-sm shadow-inner" placeholder="Sachintha Dissanayaka" />
+            {/* Status Card */}
+            <div className="bg-[#101014]/60 backdrop-blur-md border border-white/5 rounded-2xl p-6 relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 right-0 p-4 opacity-10">
+                <FaNetworkWired size={100} />
               </div>
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold ml-1">Email</label>
-                <input type="email" className="w-full bg-[#111827]/60 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-cyan/50 focus:border-brand-cyan/30 transition-all font-mono text-sm shadow-inner" placeholder="Sachintha@gmail.com" />
+
+              <div className="flex items-center gap-3 mb-6 relative z-10">
+                <div className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cyan opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-cyan"></span>
+                </div>
+                <span className="text-brand-cyan font-mono text-xs uppercase tracking-widest border border-brand-cyan/30 px-2 py-1 rounded bg-brand-cyan/5">Live Node</span>
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-2 relative z-10">System Status</h3>
+              <p className="text-gray-400 text-sm mb-2 relative z-10 leading-relaxed">
+                Currently taking on new projects. Actively looking for DevOps & MLOps engineering opportunities locally and remotely.
+              </p>
+
+              <div className="mt-8 relative z-10 space-y-4">
+                <div className="flex items-center gap-3 text-gray-300">
+                  <div className="w-8 h-8 rounded border border-white/10 flex items-center justify-center bg-white/5 text-gray-400">
+                    <FaMapMarkerAlt size={14} />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 font-mono uppercase">Location Base</div>
+                    <div className="text-sm font-semibold">Sri Lanka / Global Open</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 text-gray-300">
+                  <div className="w-8 h-8 rounded border border-white/10 flex items-center justify-center bg-white/5 text-gray-400">
+                    <FaTerminal size={14} />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 font-mono uppercase">Avg Ping Response</div>
+                    <div className="text-sm font-semibold text-emerald-400">&lt; 12 Hours</div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="mb-8">
-              <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold ml-1">Message</label>
-              <textarea rows="4" className="w-full bg-[#111827]/60 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-purple/50 focus:border-brand-purple/30 transition-all resize-none font-mono text-sm shadow-inner" placeholder="Anything what u want to say me..."></textarea>
+
+            {/* Social Node Web */}
+            <div className="bg-[#101014]/60 backdrop-blur-md border border-white/5 rounded-2xl p-6 relative">
+              <div className="text-xs text-gray-500 font-mono uppercase mb-4 tracking-widest border-b border-white/5 pb-2">External Nodes</div>
+              <div className="flex justify-between items-center px-2">
+                {socials.map((social, i) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    whileHover={{ y: -5, scale: 1.1 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + (i * 0.1) }}
+                    className={`w-12 h-12 rounded-xl border border-white/10 bg-black/50 flex items-center justify-center text-gray-400 transition-colors ${social.color} hover:bg-white/5 relative group`}
+                  >
+                    {social.icon}
+
+                    {/* Tooltip */}
+                    <span className="absolute -top-10 scale-0 group-hover:scale-100 transition-transform bg-black border border-white/10 text-white text-xs px-2 py-1 rounded shadow-xl font-mono whitespace-nowrap">
+                      {social.label}
+                    </span>
+                  </motion.a>
+                ))}
+              </div>
             </div>
 
-            <button className="w-full relative overflow-hidden bg-white/5 border border-white/10 text-white font-bold py-4 rounded-xl hover:bg-gradient-to-r hover:from-brand-cyan/20 hover:to-brand-purple/20 hover:border-brand-cyan/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.3)] transition-all duration-300 flex justify-center items-center space-x-3 group/btn">
-              <span className="relative z-10 group-hover/btn:text-brand-cyan transition-colors">Send Transmission</span>
-              <FaPaperPlane className="relative z-10 group-hover/btn:translate-x-2 group-hover/btn:-translate-y-1 group-hover/btn:text-brand-cyan transition-all" />
-            </button>
-          </motion.form>
-        </div>
-
-        {/* Right side: Contact Cards */}
-        <div className="flex flex-col justify-center gap-6 mt-16 lg:mt-0 xl:pl-10">
-          <ContactCard icon={<FaEnvelope />} title="Direct Email" detail="dilshansachintha322@gmail.com" color="text-red-400" borderHover="hover:border-red-400/50" shadowHover="hover:shadow-[0_0_20px_rgba(248,113,113,0.2)]" />
-          <ContactCard icon={<FaLinkedin />} title="LinkedIn Network" detail="Connect professionally" color="text-blue-400" borderHover="hover:border-blue-400/50" shadowHover="hover:shadow-[0_0_20px_rgba(96,165,250,0.2)]" />
-          <ContactCard icon={<FaGithub />} title="GitHub" detail="Open Source Contributions" color="text-white" borderHover="hover:border-white/50" shadowHover="hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
+          </motion.div>
 
         </div>
-
-      </motion.div>
+      </div>
     </section>
   );
 };
 
 export default ContactSection;
+
