@@ -1,6 +1,9 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import project1 from '../assets/project-pic/1.jpeg';
+import project2 from '../assets/project-pic/2.jpeg';
+import project3 from '../assets/project-pic/3.jpeg';
 
 const projects = [
   {
@@ -8,21 +11,21 @@ const projects = [
     description: 'A containerized MERN stack application featuring an Nginx reverse proxy, Docker Compose orchestration, and seamless service communication.',
     tech: ['React', 'Node.js', 'MongoDB', 'Docker', 'Jenkins'],
     github: 'https://github.com/sachilz/User-Management-App-with-Jenkins-DevSecOps-Pipeline',
-    image: './src/assets/project-pic/1.jpeg',
+    image: project1,
   },
   {
     title: 'CGPA Calculator',
     description: 'This is a project for a CGPA calculator or tracking system. The application purpose is likely to compute a students Grade Point Average based on their academic data.',
     tech: ['HTML', 'CSS', 'JavaScript'],
     github: 'https://github.com/sachilz/GPA-Calculator',
-    image: './src/assets/project-pic/2.jpeg',
+    image: project2,
   },
   {
     title: 'CI/CD Enabled MERN Stack Todo Application (DevSecOps Project)',
     description: 'A production-style MERN To-Do application containerized with Docker, orchestrated using Docker Compose, and deployed with Nginx reverse proxy',
     tech: ['React', 'Node.js', 'MongoDB', 'Docker', 'Jenkins', 'Nginx'],
     github: 'https://github.com/sachilz/CI-CD-Enabled-MERN-Stack-Todo-Application',
-    image: './src/assets/project-pic/3.jpeg',
+    image: project3,
   }
 ];
 

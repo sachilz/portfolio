@@ -1,27 +1,44 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaAward, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import cert1 from '../assets/Cert/1.png';
+import cert2 from '../assets/Cert/2.png';
+import cert3 from '../assets/Cert/3.png';
+import cert4 from '../assets/Cert/4.png';
+import cert5 from '../assets/Cert/5.png';
+import cert6 from '../assets/Cert/6.png';
+import cert7 from '../assets/Cert/7.png';
+import cert8 from '../assets/Cert/8.png';
+import cert9 from '../assets/Cert/9.png';
+import cert10 from '../assets/Cert/10.png';
+import cert11 from '../assets/Cert/11.png';
+import cert12 from '../assets/Cert/12.png';
+import cert13 from '../assets/Cert/13.png';
+import cert14 from '../assets/Cert/14.png';
+import cert15 from '../assets/Cert/15.png';
+import cert16 from '../assets/Cert/16.png';
+import cert17 from '../assets/Cert/17.png';
 
 const certs = [
-  { name: 'AI/ML Engineer - Stage 1', issue: 'SLIIT', year: '2024', image: './src/assets/Cert/1.png' },
-  { name: 'Python For Beginners', issue: 'University of Moratuwa', year: '2025', image: './src/assets/Cert/4.png' },
-  { name: 'Python For Beginners', issue: 'Simplilearn', year: '2025', image: './src/assets/Cert/3.png' },
-  { name: 'AI/ML Engineer - Stage 2', issue: 'SLIIT', year: '2025', image: './src/assets/Cert/1.png' },
-  { name: 'Postman API Fundamentals Student Expert', issue: 'Postman', year: '2025', image: './src/assets/Cert/2.png' },
-  { name: 'Crash Course: Linux For Absolute Beginners', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/5.png' },
-  { name: 'Fundamentals of DevOps', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/6.png' },
-  { name: 'DevOps Pre-Requisite Course', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/7.png' },
-  { name: 'Golang', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/8.png' },
-  { name: 'Python Basics', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/9.png' },
-  { name: 'Shell Scripts for Beginners', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/10.png' },
-  { name: 'Jenkins For Beginners', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/11.png' },
-  { name: 'Jenkins Pipelines', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/12.png' },
-  { name: 'GIT for Beginners', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/13.png' },
-  { name: 'Docker Training Course for the Absolute Beginner', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/14.png' },
-  { name: 'Kubernetes for the Absolute Beginners - Hands-on Tutorial', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/15.png' },
-  { name: 'Terraform Basics Training Course', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/16.png' },
-  { name: 'AWS For Beginners with Hands-On Labs', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/17.png' },
-  { name: 'Learning Linux Basics Course & Labs', issue: 'KodeKloud', year: '2025', image: './src/assets/Cert/5.png' },
+  { name: 'AI/ML Engineer - Stage 1', issue: 'SLIIT', year: '2024', image: cert1 },
+  { name: 'Python For Beginners', issue: 'University of Moratuwa', year: '2025', image: cert4 },
+  { name: 'Python For Beginners', issue: 'Simplilearn', year: '2025', image: cert3 },
+  { name: 'AI/ML Engineer - Stage 2', issue: 'SLIIT', year: '2025', image: cert1 },
+  { name: 'Postman API Fundamentals Student Expert', issue: 'Postman', year: '2025', image: cert2 },
+  { name: 'Crash Course: Linux For Absolute Beginners', issue: 'KodeKloud', year: '2025', image: cert5 },
+  { name: 'Fundamentals of DevOps', issue: 'KodeKloud', year: '2025', image: cert6 },
+  { name: 'DevOps Pre-Requisite Course', issue: 'KodeKloud', year: '2025', image: cert7 },
+  { name: 'Golang', issue: 'KodeKloud', year: '2025', image: cert8 },
+  { name: 'Python Basics', issue: 'KodeKloud', year: '2025', image: cert9 },
+  { name: 'Shell Scripts for Beginners', issue: 'KodeKloud', year: '2025', image: cert10 },
+  { name: 'Jenkins For Beginners', issue: 'KodeKloud', year: '2025', image: cert11 },
+  { name: 'Jenkins Pipelines', issue: 'KodeKloud', year: '2025', image: cert12 },
+  { name: 'GIT for Beginners', issue: 'KodeKloud', year: '2025', image: cert13 },
+  { name: 'Docker Training Course for the Absolute Beginner', issue: 'KodeKloud', year: '2025', image: cert14 },
+  { name: 'Kubernetes for the Absolute Beginners - Hands-on Tutorial', issue: 'KodeKloud', year: '2025', image: cert15 },
+  { name: 'Terraform Basics Training Course', issue: 'KodeKloud', year: '2025', image: cert16 },
+  { name: 'AWS For Beginners with Hands-On Labs', issue: 'KodeKloud', year: '2025', image: cert17 },
+  { name: 'Learning Linux Basics Course & Labs', issue: 'KodeKloud', year: '2025', image: '' },
 ];
 
 const CertCard = ({ cert }) => {

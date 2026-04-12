@@ -1,19 +1,27 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaYoutube, FaMedium, FaChevronLeft, FaChevronRight, FaPlay } from 'react-icons/fa';
+import vidImg1 from '../assets/images/maxresdefault.jpg';
+import vidImg2 from '../assets/images/maxresdefault (1).jpg';
+import vidImg3 from '../assets/images/maxresdefault (2).jpg';
+import vidImg4 from '../assets/images/maxresdefault (3).jpg';
+import vidImg5 from '../assets/images/maxresdefault.webp';
+import artImg1 from '../assets/images/medium_01.webp';
+import artImg2 from '../assets/images/medium_02.webp';
+import artImg3 from '../assets/images/medium_03.jpg';
 
 const videos = [
-  { title: "Jenkins Tutorial for Beginners | Install, Setup & Run First Pipeline", thumbnail: "./src/assets/images/maxresdefault.jpg", link: "https://www.youtube.com/watch?v=8etoaL6szeY&t=526s" },
-  { title: "Dockerize React Apps Like a Pro: Live Updates with Volumes! 🐳⚛️", thumbnail: "./src/assets/images/maxresdefault (1).jpg", link: "https://youtu.be/HXarkxibt6s" },
-  { title: "What is Nodemon: Stop Restarting Your Node.js Server! 🚀", thumbnail: "./src/assets/images/maxresdefault (2).jpg", link: "https://youtu.be/Bm2Swjo-LVk" },
-  { title: "Docker for Beginners | Part 1 - What is Docker & Build Your First Container (Dockerfile Tutorial)", thumbnail: "./src/assets/images/maxresdefault (3).jpg", link: "https://youtu.be/wpfhxn5szmc" },
-  { title: "Docker Tutorial | Part 2 - How to Remove Containers & Images + Port Mapping Explained", thumbnail: "./src/assets/images/maxresdefault.webp", link: "https://youtu.be/b5cxuDrQQfw?si=G8Jp8ZltM7rWqIGB" }
+  { title: "Jenkins Tutorial for Beginners | Install, Setup & Run First Pipeline", thumbnail: vidImg1, link: "https://www.youtube.com/watch?v=8etoaL6szeY&t=526s" },
+  { title: "Dockerize React Apps Like a Pro: Live Updates with Volumes! 🐳⚛️", thumbnail: vidImg2, link: "https://youtu.be/HXarkxibt6s" },
+  { title: "What is Nodemon: Stop Restarting Your Node.js Server! 🚀", thumbnail: vidImg3, link: "https://youtu.be/Bm2Swjo-LVk" },
+  { title: "Docker for Beginners | Part 1 - What is Docker & Build Your First Container (Dockerfile Tutorial)", thumbnail: vidImg4, link: "https://youtu.be/wpfhxn5szmc" },
+  { title: "Docker Tutorial | Part 2 - How to Remove Containers & Images + Port Mapping Explained", thumbnail: vidImg5, link: "https://youtu.be/b5cxuDrQQfw?si=G8Jp8ZltM7rWqIGB" }
 ];
 
 const articles = [
-  { title: "C programming-Introduction", date: "May 26, 2024", thumbnail: "./src/assets/images/medium_01.webp", link: "https://medium.com/@dilshansachiya671_17974/c-programming-introduction-9e07a18c8776" },
-  { title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", date: "April 03, 2026", thumbnail: "./src/assets/images/medium_02.webp", link: "https://medium.com/@dilshansachiya671_17974/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" },
-  { title: "What is MLOps: Why It's More Than Just Coding", date: "April 09, 2026", thumbnail: "./src/assets/images/medium_03.jpg", link: "" }
+  { title: "C programming-Introduction", date: "May 26, 2024", thumbnail: artImg1, link: "https://medium.com/@dilshansachiya671_17974/c-programming-introduction-9e07a18c8776" },
+  { title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", date: "April 03, 2026", thumbnail: artImg2, link: "https://medium.com/@dilshansachiya671_17974/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" },
+  { title: "What is MLOps: Why It's More Than Just Coding", date: "April 09, 2026", thumbnail: artImg3, link: "" }
 ];
 
 const VideoCard = ({ vid }) => {

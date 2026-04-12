@@ -1,24 +1,24 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaGraduationCap, FaSchool } from 'react-icons/fa';
-import campusLogo from '../assets/images/images.png';
-import schoolLogo from '../assets/images/school.jpeg';
+import campusImg from '../assets/images/images.png';
+import schoolImg from '../assets/images/school.jpeg';
 
 const educationData = [
   {
     type: "University",
     institution: "Horizon Campus",
     degree: "BSc Hons in Information Technology",
+    cardLogo: campusImg,
     icon: <FaGraduationCap size={20} className="text-white" />,
-    cardLogo: campusLogo,
     description: "Comprehensive study of advanced IT concepts, with a specialized focus on DevOps engineering, cloud infrastructure automation, CI/CD pipelines, and modern systems architecture. Developing a strong foundation in bridging software development and operational excellence.",
   },
   {
     type: "School",
     institution: "B/Kandakapulpotha National College",
     degree: "Primary & Secondary Education",
+    cardLogo: schoolImg,
     icon: <FaSchool size={20} className="text-white" />,
-    cardLogo: schoolLogo,
     description: "Built my foundational knowledge and skills with a robust academic background.",
   }
 ];
