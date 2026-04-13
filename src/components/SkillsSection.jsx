@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaLinux, FaAws, FaDocker, FaGithub, FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaPython, FaJava, FaBrain, FaRobot } from 'react-icons/fa';
 import { SiKubernetes, SiTerraform, SiAnsible, SiPrometheus, SiGrafana, SiTailwindcss, SiJavascript, SiTypescript, SiPostgresql, SiGo, SiMongodb, SiExpress, SiTensorflow, SiPytorch } from 'react-icons/si';
 
-const devOpsSkills = [
+export const devOpsSkills = [
   { name: 'Linux', icon: FaLinux, color: 'text-yellow-500', level: 75 },
   { name: 'AWS', icon: FaAws, color: 'text-orange-500', level: 40 },
   { name: 'Docker', icon: FaDocker, color: 'text-blue-500', level: 95 },
@@ -15,7 +15,7 @@ const devOpsSkills = [
   { name: 'CI/CD Pipelines', icon: FaGithub, color: 'text-white', level: 90 },
 ];
 
-const mernStackSkills = [
+export const mernStackSkills = [
   { name: 'MongoDB', icon: SiMongodb, color: 'text-green-500', level: 85 },
   { name: 'Express.js', icon: SiExpress, color: 'text-gray-300', level: 80 },
   { name: 'React', icon: FaReact, color: 'text-blue-400', level: 90 },
@@ -25,7 +25,7 @@ const mernStackSkills = [
   { name: 'Tailwind CSS', icon: SiTailwindcss, color: 'text-cyan-400', level: 95 },
 ];
 
-const aiMlSkills = [
+export const aiMlSkills = [
   { name: 'Python', icon: FaPython, color: 'text-yellow-400', level: 90 },
   { name: 'AI/ML Theory', icon: FaBrain, color: 'text-pink-400', level: 10 },
   { name: 'MLOps Workflows', icon: FaRobot, color: 'text-brand-cyan', level: 8 },

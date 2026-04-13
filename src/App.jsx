@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Background from './components/Background';
 import HeroSection from './components/HeroSection';
+import OverviewSection from './components/OverviewSection';
 import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
+import SkillChartSection from './components/SkillChartSection';
 import EducationSection from './components/EducationSection';
 import CertificationsSection from './components/CertificationsSection';
 import ContentSection from './components/ContentSection';
@@ -25,8 +27,10 @@ function App() {
       <Navbar />
       <main>
         <HeroSection />
+        <OverviewSection />
         <SkillsSection />
         <ProjectsSection />
+        <SkillChartSection />
         <EducationSection />
         <CertificationsSection />
         <ContentSection />

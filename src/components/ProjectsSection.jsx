@@ -5,7 +5,7 @@ import project1 from '../assets/project-pic/1.jpeg';
 import project2 from '../assets/project-pic/2.jpeg';
 import project3 from '../assets/project-pic/3.jpeg';
 
-const projects = [
+export const projects = [
   {
     title: 'User-Management-App-with-Jenkins-DevSecOps-Pipeline',
     description: 'A containerized MERN stack application featuring an Nginx reverse proxy, Docker Compose orchestration, and seamless service communication.',

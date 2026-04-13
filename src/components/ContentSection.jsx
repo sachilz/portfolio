@@ -1,30 +1,32 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { FaYoutube, FaMedium, FaChevronLeft, FaChevronRight, FaPlay } from 'react-icons/fa';
+import { FaYoutube, FaMedium, FaChevronLeft, FaChevronRight, FaPlay, FaExternalLinkAlt } from 'react-icons/fa';
 import vidImg1 from '../assets/images/maxresdefault.jpg';
 import vidImg2 from '../assets/images/maxresdefault (1).jpg';
 import vidImg3 from '../assets/images/maxresdefault (2).jpg';
 import vidImg4 from '../assets/images/maxresdefault (3).jpg';
 import vidImg5 from '../assets/images/maxresdefault.webp';
+import vidImg6 from '../assets/images/maxresdefault (4).png';
 import artImg1 from '../assets/images/medium_01.webp';
 import artImg2 from '../assets/images/medium_02.webp';
 import artImg3 from '../assets/images/medium_03.jpg';
 
-const videos = [
-  { title: "Jenkins Tutorial for Beginners | Install, Setup & Run First Pipeline", thumbnail: vidImg1, link: "https://www.youtube.com/watch?v=8etoaL6szeY&t=526s" },
-  { title: "Dockerize React Apps Like a Pro: Live Updates with Volumes! 🐳⚛️", thumbnail: vidImg2, link: "https://youtu.be/HXarkxibt6s" },
-  { title: "What is Nodemon: Stop Restarting Your Node.js Server! 🚀", thumbnail: vidImg3, link: "https://youtu.be/Bm2Swjo-LVk" },
-  { title: "Docker for Beginners | Part 1 - What is Docker & Build Your First Container (Dockerfile Tutorial)", thumbnail: vidImg4, link: "https://youtu.be/wpfhxn5szmc" },
-  { title: "Docker Tutorial | Part 2 - How to Remove Containers & Images + Port Mapping Explained", thumbnail: vidImg5, link: "https://youtu.be/b5cxuDrQQfw?si=G8Jp8ZltM7rWqIGB" }
+export const videos = [
+  { title: "Jenkins Tutorial for Beginners | Install, Setup & Run First Pipeline", description: "Learn how to install, set up, and run your first pipeline using Jenkins in this comprehensive beginner's guide.", thumbnail: vidImg1, link: "https://www.youtube.com/watch?v=8etoaL6szeY&t=526s" },
+  { title: "Dockerize React Apps Like a Pro: Live Updates with Volumes! 🐳⚛️", description: "Master Docker for React development. Learn how to achieve live updates utilizing Docker volumes for a seamless workflow.", thumbnail: vidImg2, link: "https://youtu.be/HXarkxibt6s" },
+  { title: "What is Nodemon: Stop Restarting Your Node.js Server! 🚀", description: "Improve your Node.js development experience by learning how to use Nodemon to automatically restart your server.", thumbnail: vidImg3, link: "https://youtu.be/Bm2Swjo-LVk" },
+  { title: "Docker for Beginners | Part 1 - What is Docker & Build Your First Container (Dockerfile Tutorial)", description: "Dive into the basics of Docker. Understand what Docker is and build your very first container step-by-step.", thumbnail: vidImg4, link: "https://youtu.be/wpfhxn5szmc" },
+  { title: "Docker Tutorial | Part 2 - How to Remove Containers & Images + Port Mapping Explained", description: "Expand your Docker knowledge. Learn how to manage containers and images, and understand the crucial concept of port mapping.", thumbnail: vidImg5, link: "https://youtu.be/b5cxuDrQQfw?si=G8Jp8ZltM7rWqIGB" },
+  { title: "What is a .env File? | Keep Your Secrets Safe!", description: "A quick guide on securely storing API keys, DB URLs, and secrets using .env files in MERN apps. Keeps projects secure and production-ready", thumbnail: vidImg6, link: "https://youtu.be/MSrD1UmqaJE?si=I4LCNtSLf1TMbf4Q" }
 ];
 
-const articles = [
-  { title: "C programming-Introduction", date: "May 26, 2024", thumbnail: artImg1, link: "https://medium.com/@dilshansachiya671_17974/c-programming-introduction-9e07a18c8776" },
-  { title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", date: "April 03, 2026", thumbnail: artImg2, link: "https://medium.com/@dilshansachiya671_17974/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" },
-  { title: "What is MLOps: Why It's More Than Just Coding", date: "April 09, 2026", thumbnail: artImg3, link: "" }
+export const articles = [
+  { title: "C programming-Introduction", description: "Share my journey into web development starting from static websites and the fundamentals that...", date: "May 26, 2024", thumbnail: artImg1, link: "https://medium.com/@dilshansachiya671_17974/c-programming-introduction-9e07a18c8776" },
+  { title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", description: "A detailed breakdown of how to architecture and deploy a complete MERN stack application leveraging Docker and Nginx.", date: "April 03, 2026", thumbnail: artImg2, link: "https://medium.com/@dilshansachiya671_17974/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" },
+  { title: "What is MLOps: Why It's More Than Just Coding", description: "An exploration into the world of MLOps. Discover why deploying machine learning models requires more than just writing code.", date: "April 09, 2026", thumbnail: artImg3, link: "" }
 ];
 
-const VideoCard = ({ vid }) => {
+const VideoCard = ({ vid, index }) => {
   return (
     <motion.div
       variants={{
@@ -45,22 +47,31 @@ const VideoCard = ({ vid }) => {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         style={{ transformStyle: "preserve-3d" }}
-        className="relative bg-[#0a0a0a] border border-white/10 rounded-2xl p-5 hover:border-red-500/30 group flex flex-col h-full z-10 overflow-hidden transition-colors"
+        className="relative bg-[#252535] rounded-xl group flex flex-col h-full z-10 overflow-hidden transition-colors"
       >
-        <div className="rounded-xl overflow-hidden relative shadow-xl mb-5" style={{ transform: "translateZ(30px)" }}>
-          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
-            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 transition-all shadow-[0_0_20px_rgba(220,38,38,0.8)]">
+        <div className="w-full relative overflow-hidden" style={{ transform: "translateZ(30px)" }}>
+          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all z-10 flex items-center justify-center">
+            <div className="w-16 h-16 bg-red-600/90 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 transition-all shadow-[0_0_20px_rgba(220,38,38,0.8)]">
               <FaPlay className="text-white text-2xl ml-1" />
             </div>
           </div>
-          <img src={vid.thumbnail} alt={vid.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
+          <img src={vid.thumbnail} alt={vid.title} className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-700" />
         </div>
 
-        <h3 className="text-xl leading-snug font-bold text-gray-200 group-hover:text-white transition-colors line-clamp-2 px-2" style={{ transform: "translateZ(40px)" }}>
-          {vid.title}
-        </h3>
-        <div className="mt-auto px-2 pt-6 flex items-center gap-2 text-sm font-bold text-red-500 opacity-80 group-hover:opacity-100 transition-opacity" style={{ transform: "translateZ(20px)" }}>
-          Watch on YouTube <span className="text-lg">&rarr;</span>
+        <div className="flex flex-col p-5 flex-grow" style={{ transform: "translateZ(40px)" }}>
+          <div className="flex items-center gap-2 mb-3">
+            <FaYoutube className="text-[#fca5a5] text-lg" />
+            <span className="text-[#fca5a5] font-semibold text-sm">YouTube</span>
+          </div>
+          <h3 className="text-xl leading-snug font-bold text-white group-hover:text-red-400 transition-colors line-clamp-2 mb-2">
+            {vid.title}
+          </h3>
+          <p className="text-gray-400 text-sm line-clamp-3 mb-4" style={{ fontFamily: "'Aptos', 'Segoe UI', system-ui, sans-serif" }}>
+            {vid.description}
+          </p>
+          <div className="mt-auto flex items-center gap-2 text-sm font-semibold text-[#c084fc] hover:text-[#e879f9] transition-colors">
+            View Content <FaExternalLinkAlt className="pb-[1px]" />
+          </div>
         </div>
       </motion.a>
     </motion.div>
@@ -88,23 +99,29 @@ const ArticleCard = ({ article }) => {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         style={{ transformStyle: "preserve-3d" }}
-        className="relative bg-[#0a0a0a] border border-white/10 rounded-2xl p-5 hover:border-brand-purple/40 group flex flex-col h-full z-10 overflow-hidden transition-colors"
+        className="relative bg-[#252535] rounded-xl group flex flex-col h-full z-10 overflow-hidden transition-colors"
       >
-        <div className="rounded-xl overflow-hidden relative shadow-xl mb-5" style={{ transform: "translateZ(30px)" }}>
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
-            <div className="w-16 h-16 bg-black border border-white/10 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 transition-all shadow-[0_0_20px_rgba(0,0,0,0.9)]">
-              <FaMedium className="text-white text-3xl" />
-            </div>
+        <div className="w-full relative overflow-hidden" style={{ transform: "translateZ(30px)" }}>
+          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all z-10 flex items-center justify-center">
+            {/* Medium icon overlay could be placed here if desired */}
           </div>
-          <img src={article.thumbnail} alt={article.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
+          <img src={article.thumbnail} alt={article.title} className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-700" />
         </div>
 
-        <p className="px-2 text-xs font-mono text-gray-400 mb-2 group-hover:text-brand-cyan transition-colors" style={{ transform: "translateZ(20px)" }}>{article.date}</p>
-        <h3 className="text-xl leading-snug font-bold text-gray-200 group-hover:text-white transition-colors line-clamp-2 px-2" style={{ transform: "translateZ(40px)" }}>
-          {article.title}
-        </h3>
-        <div className="mt-auto px-2 pt-6 flex items-center gap-2 text-sm font-bold text-brand-purple opacity-80 group-hover:opacity-100 transition-opacity" style={{ transform: "translateZ(20px)" }}>
-          Read on Medium <span className="text-lg">&rarr;</span>
+        <div className="flex flex-col p-5 flex-grow" style={{ transform: "translateZ(40px)" }}>
+          <div className="flex items-center gap-2 mb-3">
+            <FaMedium className="text-[#4ade80] text-lg" />
+            <span className="text-[#4ade80] font-semibold text-sm">Medium</span>
+          </div>
+          <h3 className="text-xl leading-snug font-bold text-white group-hover:text-[#b026ff] transition-colors line-clamp-2 mb-2">
+            {article.title}
+          </h3>
+          <p className="text-gray-400 text-sm line-clamp-3 mb-4" style={{ fontFamily: "'Aptos', 'Segoe UI', system-ui, sans-serif" }}>
+            {article.description}
+          </p>
+          <div className="mt-auto flex items-center gap-2 text-sm font-semibold text-[#c084fc] hover:text-[#e879f9] transition-colors">
+            View Content <FaExternalLinkAlt className="pb-[1px]" />
+          </div>
         </div>
       </motion.a>
     </motion.div>
@@ -174,8 +191,8 @@ const ContentSection = () => {
                   }}
                   className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full min-h-[300px]"
                 >
-                  {visibleVideos.map((vid) => (
-                    <VideoCard key={vid.title} vid={vid} />
+                  {visibleVideos.map((vid, i) => (
+                    <VideoCard key={vid.title} vid={vid} index={currentVideoPage * itemsPerPage + i + 1} />
                   ))}
                 </motion.div>
               </AnimatePresence>
@@ -240,8 +257,8 @@ const ContentSection = () => {
                   }}
                   className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full min-h-[300px]"
                 >
-                  {visibleArticles.map((article) => (
-                    <ArticleCard key={article.title} article={article} />
+                  {visibleArticles.map((article, i) => (
+                    <ArticleCard key={article.title} article={article} index={currentArticlePage * itemsPerPage + i + 1} />
                   ))}
                 </motion.div>
               </AnimatePresence>

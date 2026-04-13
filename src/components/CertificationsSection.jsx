@@ -19,7 +19,7 @@ import cert15 from '../assets/Cert/15.png';
 import cert16 from '../assets/Cert/16.png';
 import cert17 from '../assets/Cert/17.png';
 
-const certs = [
+export const certs = [
   { name: 'AI/ML Engineer - Stage 1', issue: 'SLIIT', year: '2024', image: cert1 },
   { name: 'Python For Beginners', issue: 'University of Moratuwa', year: '2025', image: cert4 },
   { name: 'Python For Beginners', issue: 'Simplilearn', year: '2025', image: cert3 },
@@ -70,15 +70,16 @@ const CertCard = ({ cert }) => {
         className="relative bg-[#0a0a0a] border border-white/10 rounded-2xl p-5 hover:border-brand-cyan/40 group flex flex-col h-full z-10 overflow-hidden transition-colors"
       >
         <div className="rounded-xl overflow-hidden relative shadow-xl mb-5 bg-[#111]" style={{ transform: "translateZ(30px)" }}>
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300 z-10 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0">
-            <div className="w-16 h-16 bg-[#0a0a0a] border border-brand-cyan/30 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 group-hover:rotate-[280deg] transition-all duration-300 shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+          <div className="absolute inset-0 bg-transparent group-hover:bg-black/5 transition-all duration-300 z-10 flex items-center justify-center">
+            {/* Kept the invisible structural wrapper, but removed the invasive icon and dimming to let the cert speak for itself, or you can keep the icon if desired. I'll keep the icon but remove the heavy dark overlay. */}
+            <div className="w-16 h-16 bg-[#0a0a0a]/80 border border-brand-cyan/30 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 group-hover:rotate-[280deg] transition-all duration-300 shadow-[0_0_20px_rgba(0,240,255,0.4)] opacity-0 group-hover:opacity-100">
               <FaAward className="text-brand-cyan text-3xl" />
             </div>
           </div>
           {cert.image ? (
-            <img src={cert.image} alt={cert.name} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700" />
+            <img src={cert.image} alt={cert.name} className="w-full h-48 sm:h-56 object-contain object-center group-hover:scale-105 transition-transform duration-700 bg-white/5" />
           ) : (
-            <div className="w-full h-56 flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#050505]">
+            <div className="w-full h-48 sm:h-56 flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#050505]">
               <span className="text-gray-600 font-mono text-xs tracking-widest uppercase">Image Pending</span>
             </div>
           )}
