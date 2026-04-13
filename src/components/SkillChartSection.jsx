@@ -104,21 +104,13 @@ const SkillChartSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex-1 w-full max-w-[500px] h-[400px] lg:h-[500px] relative bg-[#111116]/60 backdrop-blur-3xl border border-white/5 rounded-[40px] p-6 shadow-2xl overflow-hidden"
+          className="flex-1 w-full max-w-[500px] min-h-[400px] lg:min-h-[500px] relative bg-[#111116]/60 backdrop-blur-3xl border border-white/5 rounded-3xl p-6 shadow-2xl overflow-hidden flex flex-col"
         >
           {/* Inner ambient glow behind chart */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-brand-cyan/20 blur-[80px] rounded-full pointer-events-none"></div>
 
-          <AnimatePresence mode="popLayout">
-            <motion.div
-              key={activeRole}
-              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              exit={{ opacity: 0, scale: 1.1, rotate: 10 }}
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="w-full h-full absolute inset-0 pt-8"
-            >
-              <ResponsiveContainer width="100%" height="100%">
+          <div className="w-full flex-grow min-h-[350px] pt-4 pb-4 relative z-10">
+              <ResponsiveContainer width="100%" minHeight={350}>
                 <ComposedChart data={rolesData[activeRole]} margin={{ top: 30, right: 30, left: 0, bottom: 20 }}>
                   <defs>
                     <linearGradient id="colorArea" x1="0" y1="0" x2="0" y2="1">
@@ -151,8 +143,7 @@ const SkillChartSection = () => {
                   />
                 </ComposedChart>
               </ResponsiveContainer>
-            </motion.div>
-          </AnimatePresence>
+          </div>
         </motion.div>
 
       </div>
