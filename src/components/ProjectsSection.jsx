@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import project1 from '../assets/project-pic/1.jpeg';
-import project3 from '../assets/project-pic/3.jpeg';
-import project4 from '../assets/project-pic/4.jpeg';
+import project1 from '../assets/project-pic/DevSecOps MERN Pipeline on AWS.png';
+import project2 from '../assets/project-pic/Secure Multi-Tier MERN on AWS.png';
+import project3 from '../assets/project-pic/Cloud-Native DevSecOps Pipeline.png';
 
 export const projects = [
   {
@@ -18,14 +18,14 @@ export const projects = [
     description: 'A production-style MERN To-Do application containerized with Docker, orchestrated using Docker Compose, and deployed with Nginx reverse proxy',
     tech: ['React', 'Node.js', 'MongoDB', 'Docker', 'Jenkins', 'Nginx', 'AWS', 'VPC', 'EC2', 'ECR'],
     github: 'https://github.com/sachilz/Secure-Multi-Tier-MERN-Deployment-AWS.git',
-    image: project3,
+    image: project2,
   },
   {
     title: 'Cloud-Native DevSecOps Pipeline: Secure Flask Web Application on AWS',
     description: 'Developed a Flask media app with a secure DevSecOps pipeline using Jenkins, Docker, AWS EC2, IAM, ECR, SonarQube, and Trivy for automated deployment and vulnerability scanning.',
     tech: ['Flask', 'Python', 'Docker', 'Jenkins', 'AWS', 'EC2', 'ECR', 'SonarQube', 'Trivy'],
     github: 'https://github.com/sachilz/Secure-Flask-Web-Application-on-AWS.git',
-    image: project4,
+    image: project3,
   }
 ];
 
