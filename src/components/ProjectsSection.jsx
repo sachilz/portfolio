@@ -1,12 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaGithub, FaChevronLeft, FaChevronRight, FaTerminal, FaCodeBranch } from 'react-icons/fa';
 import project1 from '../assets/project-pic/DevSecOps MERN Pipeline on AWS.png';
 import project2 from '../assets/project-pic/Secure Multi-Tier MERN on AWS.png';
 import project3 from '../assets/project-pic/Cloud-Native DevSecOps Pipeline.png';
 import project4 from '../assets/project-pic/AWS Infrastructure Provisioning and Deployment Automation.png';
 import project5 from '../assets/project-pic/Automating AWS EC2 Server Configuration with Ansible.png';
 import project6 from '../assets/project-pic/Multi-OS Configuration Management Using Ansible.png';
+import project7 from '../assets/project-pic/IntelliTutor AI Microservices Platform.png';
+import project8 from '../assets/project-pic/Career Advisor Agentic AI.png';
+import project9 from '../assets/project-pic/FND Neural Optimization.png';
 
 export const projects = [
   {
@@ -15,6 +18,7 @@ export const projects = [
     tech: ['React', 'Node.js', 'MongoDB', 'Docker', 'Jenkins', 'AWS', 'EC2'],
     github: 'https://github.com/sachilz/Securing-Deploying-a-MERN-Stack-App-on-AWS.git',
     image: project1,
+    category: 'DevOps & Cloud'
   },
   {
     title: 'Secure Multi-Tier MERN Deployment: AWS VPC Networking & Docker Orchestration',
@@ -22,6 +26,7 @@ export const projects = [
     tech: ['React', 'Node.js', 'MongoDB', 'Docker', 'Jenkins', 'Nginx', 'AWS', 'VPC', 'EC2', 'ECR'],
     github: 'https://github.com/sachilz/Secure-Multi-Tier-MERN-Deployment-AWS.git',
     image: project2,
+    category: 'DevOps & Cloud'
   },
   {
     title: 'Cloud-Native DevSecOps Pipeline: Secure Flask Web Application on AWS',
@@ -29,6 +34,7 @@ export const projects = [
     tech: ['Flask', 'Python', 'Docker', 'Jenkins', 'AWS', 'EC2', 'ECR', 'SonarQube', 'Trivy'],
     github: 'https://github.com/sachilz/Secure-Flask-Web-Application-on-AWS.git',
     image: project3,
+    category: 'DevOps & Cloud'
   },
   {
     title: 'AWS Infrastructure Provisioning & Deployment Automation',
@@ -36,6 +42,7 @@ export const projects = [
     tech: ['Terraform', 'Ansible', 'AWS', 'Docker', 'Jenkins', 'DevSecOps', 'SonarQube', 'Trivy'],
     github: 'https://github.com/sachilz/AWS-Infrastructure-Provisioning-Deployment-Automation',
     image: project4,
+    category: 'DevOps & Cloud'
   },
   {
     title: 'Automated Remote Server Configuration with Ansible & AWS',
@@ -43,6 +50,7 @@ export const projects = [
     tech: ['Ansible', 'AWS', 'EC2', 'Python', 'Boto3', 'Apache', 'MariaDB', 'Linux'],
     github: 'https://github.com/sachilz/Automating-AWS-EC2-server-configuration-with-Ansible',
     image: project5,
+    category: 'DevOps & Cloud'
   },
   {
     title: 'Multi-OS Configuration Management Using Ansible on AWS',
@@ -50,7 +58,38 @@ export const projects = [
     tech: ['Ansible', 'AWS', 'EC2', 'Ubuntu', 'CentOS', 'Linux', 'YAML'],
     github: 'https://github.com/sachilz/Multi-OS-Configuration-Management-Using-Ansible',
     image: project6,
+    category: 'DevOps & Cloud'
+  },
+  {
+    title: 'IntelliTutor: Microservices LMS with AI RAG Intelligent Tutor',
+    description: 'An enterprise microservices-based Learning Management System featuring an AI-powered RAG intelligent tutor for personalized student learning. Built with Spring Boot 3, Java 17, React, MongoDB, Keycloak SSO, and Docker.',
+    tech: ['Spring Boot 3', 'Java 17', 'React', 'MongoDB', 'Keycloak', 'Docker', 'RAG AI'],
+    github: 'https://github.com/sachilz/intellitutor-platform',
+    image: project7,
+    category: 'AI & Microservices'
+  },
+  {
+    title: 'Career Advisor: Autonomous Multi-Agent AI Platform with RAG',
+    description: 'Autonomous multi-agent career advisor designed for IT students and graduates with skills-gap analysis and industry roadmap generation. Built with LangGraph, ChromaDB RAG, Groq Llama-3.1, and Streamlit.',
+    tech: ['LangGraph', 'Multi-Agent', 'ChromaDB', 'RAG', 'Llama-3.1', 'Streamlit', 'Python', 'Docker'],
+    github: 'https://github.com/sachilz/career-advisor-agentic-ai',
+    image: project8,
+    category: 'AI & Microservices'
+  },
+  {
+    title: 'FND: Fake News Detection with PSO-Optimized Neural Network',
+    description: 'AI-powered classification system evaluating Particle Swarm Optimization (PSO) for hyperparameter tuning in PyTorch Multi-Layer Perceptrons with TF-IDF text representation, CLI, and modern Web UI inference.',
+    tech: ['PyTorch', 'Python', 'NLP', 'TF-IDF', 'PSO Algorithm', 'Docker', 'Vite', 'Nginx'],
+    github: 'https://github.com/sachilz/fnd-neural-optimization',
+    image: project9,
+    category: 'AI & Microservices'
   }
+];
+
+const categories = [
+  'All Deployments',
+  'DevOps & Cloud',
+  'AI & Microservices'
 ];
 
 const ProjectCard = ({ project, index }) => {
@@ -121,13 +160,19 @@ const ProjectCard = ({ project, index }) => {
 
         {/* Project Image */}
         <div
-          className="w-full aspect-video bg-cover bg-center rounded-lg mb-4 shadow-lg relative overflow-hidden brightness-105 group-hover:brightness-115 transition-all duration-500 border border-white/5"
-          style={{ backgroundImage: `url(${project.image})`, transform: "translateZ(25px)" }}
+          className="w-full aspect-video bg-cover bg-center rounded-lg mb-4 shadow-lg relative overflow-hidden brightness-105 group-hover:brightness-115 transition-all duration-500 border border-white/5 bg-[#050811]"
+          style={{ backgroundImage: `url("${project.image}")`, transform: "translateZ(25px)" }}
         >
           <div className="absolute inset-0 bg-transparent group-hover:bg-emerald-500/5 transition-colors duration-500"></div>
         </div>
 
         <div className="flex-grow flex flex-col font-sans" style={{ transform: "translateZ(35px)" }}>
+          <div className="flex items-center gap-2 mb-1.5 font-mono">
+            <span className="text-[10px] text-brand-cyan font-bold px-2 py-0.5 rounded bg-brand-cyan/10 border border-brand-cyan/20">
+              {project.category}
+            </span>
+          </div>
+
           <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors mb-2 leading-snug">
             {project.title}
           </h3>
@@ -162,15 +207,26 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const ProjectsSection = () => {
+  const [activeCategory, setActiveCategory] = useState('All Deployments');
+  const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 3;
 
-  const [currentPage, setCurrentPage] = useState(0);
-  const totalPages = Math.ceil(projects.length / itemsPerPage);
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === 'All Deployments') return projects;
+    return projects.filter(p => p.category === activeCategory);
+  }, [activeCategory]);
+
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
 
   const handleNext = () => setCurrentPage((prev) => (prev + 1) % totalPages);
   const handlePrev = () => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
 
-  const visibleProjects = projects.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+  const handleCategorySelect = (cat) => {
+    setActiveCategory(cat);
+    setCurrentPage(0);
+  };
+
+  const visibleProjects = filteredProjects.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
   return (
     <section id="projects" className="py-24 bg-transparent relative z-10 border-t border-white/5">
@@ -181,26 +237,55 @@ const ProjectsSection = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24"
       >
+        {/* Linux-inspired header */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16 border-l-4 border-emerald-400 pl-6 flex justify-between items-end font-mono-code"
+          className="mb-10 border-l-4 border-emerald-400 pl-6 flex flex-col md:flex-row md:justify-between md:items-end gap-6 font-mono-code"
         >
           <div>
             <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold mb-2">
+              <FaTerminal className="text-emerald-400" />
               <span>sachintha@arch:~$ ls -la /var/deployments/</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight font-sans">
               Production <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-brand-cyan to-brand-purple">Deployments</span>
             </h2>
-            <p className="text-gray-400 text-xs sm:text-sm font-sans">
-              Containerized architectures, IaC blueprints, and multi-OS server orchestration. Showing {Math.min(currentPage * itemsPerPage + 1, projects.length)}-{Math.min((currentPage + 1) * itemsPerPage, projects.length)} of {projects.length} repos.
+            <p className="text-gray-400 text-xs sm:text-sm font-sans max-w-2xl">
+              Containerized microservices, autonomous multi-agent AI architectures, IaC blueprints, and multi-OS server orchestration.
             </p>
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="flex items-center gap-2 bg-[#090d16] p-1.5 rounded-xl border border-white/10 self-start md:self-auto flex-wrap">
+            {categories.map((cat) => {
+              const count = cat === 'All Deployments' ? projects.length : projects.filter(p => p.category === cat).length;
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => handleCategorySelect(cat)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-2 ${
+                    isActive
+                      ? 'bg-emerald-500 text-black font-bold shadow-[0_0_15px_rgba(16,185,129,0.35)]'
+                      : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span>{cat}</span>
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                    isActive ? 'bg-black/30 text-black' : 'bg-white/10 text-gray-400'
+                  }`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </motion.div>
 
+        {/* Carousel Grid */}
         <div className="relative min-h-[460px]">
           {totalPages > 1 && (
             <button
@@ -214,7 +299,7 @@ const ProjectsSection = () => {
 
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentPage}
+              key={`${activeCategory}-${currentPage}`}
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -246,6 +331,49 @@ const ProjectsSection = () => {
             </button>
           )}
         </div>
+
+        {/* Carousel Pagination Footer */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-between border-t border-white/10 pt-6 mt-8 font-mono">
+            <p className="text-xs text-gray-500">
+              Showing <strong className="text-white">{currentPage * itemsPerPage + 1}</strong>–
+              <strong className="text-white">{Math.min((currentPage + 1) * itemsPerPage, filteredProjects.length)}</strong> of <strong className="text-white">{filteredProjects.length}</strong> deployments
+            </p>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handlePrev}
+                disabled={currentPage === 0}
+                className={`px-3 py-1.5 rounded-lg border text-xs flex items-center gap-1.5 transition-colors ${
+                  currentPage === 0
+                    ? 'border-white/5 text-gray-600 cursor-not-allowed'
+                    : 'border-white/10 hover:border-emerald-500/50 text-gray-300 hover:text-white bg-white/5'
+                }`}
+              >
+                <FaChevronLeft size={10} />
+                <span>Previous</span>
+              </button>
+
+              <span className="text-xs text-gray-400 px-3 py-1.5 rounded-lg bg-black/40 border border-white/5">
+                Page <span className="text-emerald-400 font-bold">{currentPage + 1}</span> of {totalPages}
+              </span>
+
+              <button
+                onClick={handleNext}
+                disabled={currentPage === totalPages - 1}
+                className={`px-3 py-1.5 rounded-lg border text-xs flex items-center gap-1.5 transition-colors ${
+                  currentPage === totalPages - 1
+                    ? 'border-white/5 text-gray-600 cursor-not-allowed'
+                    : 'border-white/10 hover:border-emerald-500/50 text-gray-300 hover:text-white bg-white/5'
+                }`}
+              >
+                <span>Next</span>
+                <FaChevronRight size={10} />
+              </button>
+            </div>
+          </div>
+        )}
+
       </motion.div>
     </section>
   );

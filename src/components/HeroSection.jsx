@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaYoutube, FaMedium, FaTerminal, FaDocker, FaAws, FaDownload } from 'react-icons/fa';
-import { SiKubernetes, SiTerraform } from 'react-icons/si';
+import { SiKubernetes, SiTerraform, SiAnsible } from 'react-icons/si';
 
 const HeroSection = () => {
   const containerVariants = {
@@ -118,37 +118,61 @@ const HeroSection = () => {
       </div>
 
       {/* Floating System Architecture Icons */}
+      {/* Top Left: Kubernetes */}
       <motion.div
         animate={{ y: [0, -15, 0], rotateZ: [-4, 4, -4] }}
         transition={{ y: { duration: 6, repeat: Infinity, ease: "easeInOut" }, rotateZ: { duration: 6, repeat: Infinity, ease: "easeInOut" } }}
-        className="absolute top-24 left-4 md:top-[18%] md:left-[8%] z-20 text-blue-500 opacity-90 drop-shadow-[0_0_35px_rgba(59,130,246,0.6)] hover:scale-110 transition-all cursor-pointer"
+        className="absolute top-20 left-3 sm:top-[16%] sm:left-[6%] md:left-[8%] z-20 text-blue-500 opacity-90 drop-shadow-[0_0_35px_rgba(59,130,246,0.6)] hover:scale-110 transition-all cursor-pointer"
         title="Kubernetes Cluster"
       >
         <SiKubernetes className="text-3xl sm:text-5xl md:text-6xl" />
       </motion.div>
 
+      {/* Middle Left: Terraform */}
+      <motion.div
+        animate={{ y: [0, -18, 0], rotateZ: [-6, 6, -6] }}
+        transition={{ y: { duration: 7.5, repeat: Infinity, ease: "easeInOut" }, rotateZ: { duration: 7.5, repeat: Infinity, ease: "easeInOut" } }}
+        className="absolute top-[52%] left-2 sm:left-[4%] md:left-[6%] z-20 text-purple-400 opacity-90 drop-shadow-[0_0_35px_rgba(168,85,247,0.6)] hover:scale-110 transition-all cursor-pointer"
+        title="Terraform IaC"
+      >
+        <SiTerraform className="text-2xl sm:text-4xl md:text-5xl" />
+      </motion.div>
+
+      {/* Bottom Left: Docker */}
       <motion.div
         animate={{ y: [0, 20, 0], rotateZ: [8, -8, 8] }}
         transition={{ y: { duration: 7, repeat: Infinity, ease: "easeInOut" }, rotateZ: { duration: 7, repeat: Infinity, ease: "easeInOut" } }}
-        className="absolute bottom-10 left-4 md:bottom-[15%] md:left-[10%] z-20 text-brand-cyan opacity-90 drop-shadow-[0_0_35px_rgba(0,240,255,0.6)] hover:scale-110 transition-all cursor-pointer"
+        className="absolute bottom-10 left-3 sm:bottom-[14%] sm:left-[6%] md:left-[9%] z-20 text-brand-cyan opacity-90 drop-shadow-[0_0_35px_rgba(0,240,255,0.6)] hover:scale-110 transition-all cursor-pointer"
         title="Docker Engine"
       >
         <FaDocker className="text-3xl sm:text-5xl md:text-7xl" />
       </motion.div>
 
+      {/* Top Right: AWS */}
       <motion.div
         animate={{ y: [0, -20, 0], rotateZ: [10, -5, 10] }}
         transition={{ y: { duration: 8, repeat: Infinity, ease: "easeInOut" }, rotateZ: { duration: 8, repeat: Infinity, ease: "easeInOut" } }}
-        className="absolute top-1/4 right-2 md:top-[18%] md:right-[10%] z-20 text-orange-400 opacity-90 drop-shadow-[0_0_35px_rgba(251,146,60,0.6)] hover:scale-110 transition-all cursor-pointer"
+        className="absolute top-20 right-3 sm:top-[16%] sm:right-[6%] md:right-[9%] z-20 text-orange-400 opacity-90 drop-shadow-[0_0_35px_rgba(251,146,60,0.6)] hover:scale-110 transition-all cursor-pointer"
         title="AWS Cloud Platform"
       >
         <FaAws className="text-3xl sm:text-5xl md:text-7xl" />
       </motion.div>
 
+      {/* Middle Right: Ansible */}
+      <motion.div
+        animate={{ y: [0, 16, 0], rotateZ: [7, -7, 7] }}
+        transition={{ y: { duration: 6.8, repeat: Infinity, ease: "easeInOut" }, rotateZ: { duration: 6.8, repeat: Infinity, ease: "easeInOut" } }}
+        className="absolute top-[52%] right-2 sm:right-[4%] md:right-[6%] z-20 text-red-500 opacity-90 drop-shadow-[0_0_35px_rgba(239,68,68,0.6)] hover:scale-110 transition-all cursor-pointer"
+        title="Ansible Automation"
+      >
+        <SiAnsible className="text-2xl sm:text-4xl md:text-5xl" />
+      </motion.div>
+
+      {/* Bottom Right: GitHub */}
       <motion.div
         animate={{ y: [0, 25, 0], rotateZ: [-8, 8, -8] }}
         transition={{ y: { duration: 9, repeat: Infinity, ease: "easeInOut" }, rotateZ: { duration: 9, repeat: Infinity, ease: "easeInOut" } }}
-        className="absolute bottom-10 right-4 md:bottom-[20%] md:right-[10%] z-20 text-white opacity-90 drop-shadow-[0_0_35px_rgba(255,255,255,0.5)] hover:scale-110 transition-all cursor-pointer"
+        className="absolute bottom-10 right-3 sm:bottom-[14%] sm:right-[6%] md:right-[9%] z-20 text-white opacity-90 drop-shadow-[0_0_35px_rgba(255,255,255,0.5)] hover:scale-110 transition-all cursor-pointer"
         title="GitHub CI/CD"
       >
         <FaGithub className="text-3xl sm:text-5xl md:text-6xl" />
