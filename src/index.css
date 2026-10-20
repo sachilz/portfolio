@@ -3,9 +3,12 @@
 @theme {
   --color-brand-cyan: #00f0ff;
   --color-brand-purple: #b026ff;
-  --color-brand-dark: #050505;
-  --color-brand-card: #111111;
-  --color-brand-border: #222222;
+  --color-brand-dark: #07090e;
+  --color-brand-card: #0d111a;
+  --color-brand-border: #162033;
+  --color-term-green: #00ff66;
+  --color-term-amber: #ffb000;
+  --color-term-blue: #1793d1;
 }
 
 html {
@@ -18,6 +21,24 @@ body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Subtle terminal scanlines overlay */
+.terminal-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
 }
 
 /* Custom Scrollbar for a premium feel */

@@ -384,21 +384,36 @@ const ModernSkillCard = ({ skill, index }) => {
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.3, delay: index * 0.03 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="relative rounded-2xl bg-[#0b0c12]/90 border border-white/10 hover:border-brand-cyan/40 p-5 overflow-hidden group shadow-lg backdrop-blur-xl transition-[border-color,box-shadow] duration-300"
+      className="relative rounded-xl bg-[#0a0d14]/90 border border-white/10 hover:border-emerald-500/40 p-4 sm:p-5 overflow-hidden group shadow-lg backdrop-blur-xl transition-[border-color,box-shadow] duration-300 font-mono-code"
     >
+      {/* Terminal Mini Header Bar */}
+      <div className="flex items-center justify-between pb-2 mb-3 border-b border-white/5 text-[9px] text-gray-500 select-none">
+        <div className="flex items-center space-x-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#ff5f56]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#ffbd2e]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#27c93f]" />
+          <span className="ml-1 text-gray-400 font-mono">
+            {skill.name.toLowerCase().replace(/[^a-z0-9]/g, '_')}.service
+          </span>
+        </div>
+        <span className="text-emerald-400 font-bold">
+          [STATUS: 200 OK]
+        </span>
+      </div>
+
       {/* Interactive Cursor Spotlight Glow */}
       <div
-        className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+        className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
         style={{
-          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 240, 255, 0.12), transparent 70%)`
+          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 255, 102, 0.1), transparent 70%)`
         }}
       />
 
       <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         {/* Left Side: Icon + Details */}
         <div className="flex items-start gap-4 flex-grow min-w-0">
-          <div className={`p-3.5 rounded-xl bg-black/60 border border-white/10 ${skill.color} shadow-inner group-hover:scale-105 group-hover:shadow-[0_0_20px_currentColor] transition-all duration-300 flex-shrink-0 mt-0.5`}>
-            <skill.icon size={26} />
+          <div className={`p-3 rounded-xl bg-black/60 border border-white/10 ${skill.color} shadow-inner group-hover:scale-105 group-hover:shadow-[0_0_20px_currentColor] transition-all duration-300 flex-shrink-0 mt-0.5`}>
+            <skill.icon size={24} />
           </div>
 
           <div className="flex flex-col min-w-0 flex-grow">
@@ -406,16 +421,16 @@ const ModernSkillCard = ({ skill, index }) => {
               <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500 font-medium">
                 {skill.category}
               </span>
-              <span className={`text-[9px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full border ${getStatusColor(skill.status)} font-semibold`}>
+              <span className={`text-[9px] font-mono uppercase tracking-widest px-2 py-0.5 rounded border ${getStatusColor(skill.status)} font-semibold`}>
                 {skill.status}
               </span>
             </div>
 
-            <h4 className="text-base sm:text-lg font-bold text-white group-hover:text-brand-cyan transition-colors truncate">
+            <h4 className="text-base sm:text-lg font-bold text-white group-hover:text-emerald-400 transition-colors truncate">
               {skill.name}
             </h4>
 
-            <p className="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed">
+            <p className="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed font-sans">
               {skill.tagline}
             </p>
           </div>
@@ -707,10 +722,17 @@ const SkillsSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-20 border-l-4 border-brand-cyan pl-6"
+          className="mb-16 border-l-4 border-emerald-400 pl-6 font-mono-code"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Skills</span></h2>
-          <p className="text-gray-400 mt-2 max-w-2xl">A comprehensive breakdown of my technical proficiency and expertise levels.</p>
+          <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold mb-2">
+            <span>sachintha@arch:~$ pacman -Qe --devops-stack</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-3 tracking-tight font-sans">
+            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-brand-cyan to-brand-purple">Arsenal</span>
+          </h2>
+          <p className="text-gray-400 mt-2 max-w-2xl text-xs sm:text-sm">
+            Zero-downtime infrastructure tooling, heterogeneous Linux fleet orchestration, and cloud architecture capabilities.
+          </p>
         </motion.div>
 
         <div className="flex flex-col gap-20">

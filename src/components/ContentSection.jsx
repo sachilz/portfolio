@@ -38,39 +38,56 @@ const VideoCard = ({ vid, index }) => {
     >
       <motion.a
         href={vid.link}
+        target="_blank"
+        rel="noopener noreferrer"
         whileHover={{
-          rotateX: 15,
-          rotateY: -15,
-          scale: 1.05,
-          z: 30,
+          rotateX: 10,
+          rotateY: -10,
+          scale: 1.02,
+          z: 25,
           boxShadow: "-20px 20px 40px rgba(220,38,38,0.15)"
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         style={{ transformStyle: "preserve-3d" }}
-        className="relative bg-[#252535] rounded-xl group flex flex-col h-full z-10 overflow-hidden transition-colors"
+        className="relative bg-[#0a0d14]/90 border border-white/10 hover:border-red-500/40 rounded-xl group flex flex-col h-full z-10 overflow-hidden transition-colors font-mono-code"
       >
-        <div className="w-full relative overflow-hidden" style={{ transform: "translateZ(30px)" }}>
-          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all z-10 flex items-center justify-center">
-            <div className="w-16 h-16 bg-red-600/90 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 transition-all shadow-[0_0_20px_rgba(220,38,38,0.8)]">
-              <FaPlay className="text-white text-2xl ml-1" />
+        {/* Terminal Window Header Bar */}
+        <div className="flex items-center justify-between px-4 py-2 border-b border-white/5 text-[9px] text-gray-500 select-none">
+          <div className="flex items-center space-x-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff5f56]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ffbd2e]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#27c93f]" />
+            <span className="ml-1 text-gray-400 font-mono truncate max-w-[150px]">
+              mpv: stream.m3u8
+            </span>
+          </div>
+          <span className="text-red-400 font-bold text-[9px]">
+            [1080p 60FPS]
+          </span>
+        </div>
+
+        <div className="w-full relative overflow-hidden" style={{ transform: "translateZ(25px)" }}>
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all z-10 flex items-center justify-center">
+            <div className="w-12 h-12 bg-red-600/90 rounded-full flex items-center justify-center transform scale-90 group-hover:scale-110 transition-all shadow-[0_0_20px_rgba(220,38,38,0.8)]">
+              <FaPlay className="text-white text-lg ml-0.5" />
             </div>
           </div>
           <img src={vid.thumbnail} alt={vid.title} className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-700" />
         </div>
 
-        <div className="flex flex-col p-5 flex-grow" style={{ transform: "translateZ(40px)" }}>
-          <div className="flex items-center gap-2 mb-3">
-            <FaYoutube className="text-[#fca5a5] text-lg" />
-            <span className="text-[#fca5a5] font-semibold text-sm">YouTube</span>
+        <div className="flex flex-col p-4 flex-grow font-sans" style={{ transform: "translateZ(35px)" }}>
+          <div className="flex items-center gap-2 mb-2 font-mono-code">
+            <FaYoutube className="text-red-400 text-sm" />
+            <span className="text-red-400 font-semibold text-xs">NextOps · YouTube</span>
           </div>
-          <h3 className="text-xl leading-snug font-bold text-white group-hover:text-red-400 transition-colors line-clamp-2 mb-2">
+          <h3 className="text-base font-bold text-white group-hover:text-red-400 transition-colors line-clamp-2 mb-2 leading-snug">
             {vid.title}
           </h3>
-          <p className="text-gray-400 text-sm line-clamp-3 mb-4" style={{ fontFamily: "'Aptos', 'Segoe UI', system-ui, sans-serif" }}>
+          <p className="text-gray-400 text-xs line-clamp-2 mb-3 leading-relaxed">
             {vid.description}
           </p>
-          <div className="mt-auto flex items-center gap-2 text-sm font-semibold text-[#c084fc] hover:text-[#e879f9] transition-colors">
-            View Content <FaExternalLinkAlt className="pb-[1px]" />
+          <div className="mt-auto flex items-center gap-2 text-xs font-semibold text-red-400 font-mono-code">
+            <span>$ mpv --play</span> <FaExternalLinkAlt className="pb-[1px]" size={10} />
           </div>
         </div>
       </motion.a>
@@ -89,38 +106,55 @@ const ArticleCard = ({ article }) => {
       className="relative w-full h-full"
     >
       <motion.a
-        href={article.link}
+        href={article.link || "https://medium.com/@sachilz"}
+        target="_blank"
+        rel="noopener noreferrer"
         whileHover={{
-          rotateX: 15,
-          rotateY: -15,
-          scale: 1.05,
-          z: 30,
-          boxShadow: "-20px 20px 40px rgba(176,38,255,0.15)"
+          rotateX: 10,
+          rotateY: -10,
+          scale: 1.02,
+          z: 25,
+          boxShadow: "-20px 20px 40px rgba(0,255,102,0.15)"
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         style={{ transformStyle: "preserve-3d" }}
-        className="relative bg-[#252535] rounded-xl group flex flex-col h-full z-10 overflow-hidden transition-colors"
+        className="relative bg-[#0a0d14]/90 border border-white/10 hover:border-emerald-500/40 rounded-xl group flex flex-col h-full z-10 overflow-hidden transition-colors font-mono-code"
       >
-        <div className="w-full relative overflow-hidden" style={{ transform: "translateZ(30px)" }}>
-          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all z-10 flex items-center justify-center">
-            {/* Medium icon overlay could be placed here if desired */}
+        {/* Terminal Window Header Bar */}
+        <div className="flex items-center justify-between px-4 py-2 border-b border-white/5 text-[9px] text-gray-500 select-none">
+          <div className="flex items-center space-x-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff5f56]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ffbd2e]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#27c93f]" />
+            <span className="ml-1 text-gray-400 font-mono truncate max-w-[150px]">
+              vim: {article.title.toLowerCase().replace(/[^a-z0-9]/g, '_').slice(0, 16)}.md
+            </span>
           </div>
+          <span className="text-emerald-400 font-bold text-[9px]">
+            [READ: UTF-8]
+          </span>
+        </div>
+
+        <div className="w-full relative overflow-hidden" style={{ transform: "translateZ(25px)" }}>
           <img src={article.thumbnail} alt={article.title} className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-700" />
         </div>
 
-        <div className="flex flex-col p-5 flex-grow" style={{ transform: "translateZ(40px)" }}>
-          <div className="flex items-center gap-2 mb-3">
-            <FaMedium className="text-[#4ade80] text-lg" />
-            <span className="text-[#4ade80] font-semibold text-sm">Medium</span>
+        <div className="flex flex-col p-4 flex-grow font-sans" style={{ transform: "translateZ(35px)" }}>
+          <div className="flex items-center justify-between mb-2 font-mono-code text-xs">
+            <div className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+              <FaMedium className="text-sm" />
+              <span>Medium Blog</span>
+            </div>
+            <span className="text-gray-500 text-[10px]">{article.date}</span>
           </div>
-          <h3 className="text-xl leading-snug font-bold text-white group-hover:text-[#b026ff] transition-colors line-clamp-2 mb-2">
+          <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors line-clamp-2 mb-2 leading-snug">
             {article.title}
           </h3>
-          <p className="text-gray-400 text-sm line-clamp-3 mb-4" style={{ fontFamily: "'Aptos', 'Segoe UI', system-ui, sans-serif" }}>
+          <p className="text-gray-400 text-xs line-clamp-2 mb-3 leading-relaxed">
             {article.description}
           </p>
-          <div className="mt-auto flex items-center gap-2 text-sm font-semibold text-[#c084fc] hover:text-[#e879f9] transition-colors">
-            View Content <FaExternalLinkAlt className="pb-[1px]" />
+          <div className="mt-auto flex items-center gap-2 text-xs font-semibold text-emerald-400 font-mono-code">
+            <span>$ cat article.md</span> <FaExternalLinkAlt className="pb-[1px]" size={10} />
           </div>
         </div>
       </motion.a>
@@ -154,12 +188,15 @@ const ContentSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="mb-12 border-l-4 border-brand-cyan pl-6">
-              <div className="flex items-center gap-3">
-                <FaYoutube className="text-4xl text-red-500" />
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">You <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Tube</span></h2>
+            <div className="mb-12 border-l-4 border-red-500 pl-6 font-mono-code">
+              <div className="flex items-center gap-2 text-red-400 text-xs font-bold mb-2">
+                <span>sachintha@arch:~$ mpv --profile=devops-tutorials https://youtube.com/@NextOpz</span>
               </div>
-              <p className="text-gray-400 mt-3">Watch my latest tutorials and infrastructure deep-dives. Showing {Math.min(currentVideoPage * itemsPerPage + 1, videos.length)}-{Math.min((currentVideoPage + 1) * itemsPerPage, videos.length)} of {videos.length} videos.</p>
+              <div className="flex items-center gap-3">
+                <FaYoutube className="text-3xl text-red-500" />
+                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight font-sans">You<span className="text-red-500">Tube</span> NextOps</h2>
+              </div>
+              <p className="text-gray-400 mt-2 text-xs sm:text-sm font-sans">Step-by-step engineering tutorials, container workflows, and live infrastructure demos. Showing {Math.min(currentVideoPage * itemsPerPage + 1, videos.length)}-{Math.min((currentVideoPage + 1) * itemsPerPage, videos.length)} of {videos.length} videos.</p>
             </div>
 
             <div className="relative min-h-[400px]">
@@ -220,12 +257,15 @@ const ContentSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="mb-12 border-l-4 border-brand-cyan pl-6">
-              <div className="flex items-center gap-3">
-                <FaMedium className="text-4xl text-white" />
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Articles</span></h2>
+            <div className="mb-12 border-l-4 border-emerald-400 pl-6 font-mono-code">
+              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold mb-2">
+                <span>sachintha@arch:~$ man 7 devops-architecture-articles</span>
               </div>
-              <p className="text-gray-400 mt-3">Deep technical write-ups and architecture guides. Showing {Math.min(currentArticlePage * itemsPerPage + 1, articles.length)}-{Math.min((currentArticlePage + 1) * itemsPerPage, articles.length)} of {articles.length} articles.</p>
+              <div className="flex items-center gap-3">
+                <FaMedium className="text-3xl text-emerald-400" />
+                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight font-sans">Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-brand-cyan to-brand-purple">Articles</span></h2>
+              </div>
+              <p className="text-gray-400 mt-2 text-xs sm:text-sm font-sans">Deep technical write-ups and architecture guides. Showing {Math.min(currentArticlePage * itemsPerPage + 1, articles.length)}-{Math.min((currentArticlePage + 1) * itemsPerPage, articles.length)} of {articles.length} articles.</p>
             </div>
 
             <div className="relative min-h-[420px]">

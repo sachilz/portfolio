@@ -96,43 +96,63 @@ const ProjectCard = ({ project, index }) => {
         ref={ref}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        whileHover={{ scale: 1.03, y: -5 }}
+        whileHover={{ scale: 1.02, y: -4 }}
         style={{
           rotateY,
           rotateX,
           transformStyle: "preserve-3d",
         }}
-        className="group h-full flex flex-col"
+        className="group h-full flex flex-col rounded-xl bg-[#0a0d14]/90 border border-white/10 hover:border-emerald-500/40 p-4 shadow-xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 font-mono-code"
       >
-        {/* Project Image */}
-        <div
-          className="w-full aspect-video bg-cover bg-center rounded-xl mb-6 shadow-xl relative overflow-hidden brightness-110 group-hover:brightness-125 transition-all duration-500 border border-white/5"
-          style={{ backgroundImage: `url(${project.image})`, transform: "translateZ(30px)" }}
-        >
-          <div className="absolute inset-0 bg-transparent group-hover:bg-white/5 transition-colors duration-500"></div>
+        {/* Terminal Window Chrome */}
+        <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-white/5 text-[9px] text-gray-500 select-none">
+          <div className="flex items-center space-x-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#ff5f56]" />
+            <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
+            <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
+            <span className="ml-1.5 text-gray-400 font-mono truncate max-w-[170px]">
+              ~/deployments/{project.github ? project.github.split('/').pop().replace('.git', '') : 'repo'}
+            </span>
+          </div>
+          <span className="text-emerald-400 font-bold text-[9px] uppercase">
+            [PROD: READY]
+          </span>
         </div>
 
-        <div className="flex-grow flex flex-col" style={{ transform: "translateZ(40px)" }}>
-          <h3 className="text-xl font-bold text-brand-cyan mb-3" style={{ transform: "translateZ(50px)" }}>
+        {/* Project Image */}
+        <div
+          className="w-full aspect-video bg-cover bg-center rounded-lg mb-4 shadow-lg relative overflow-hidden brightness-105 group-hover:brightness-115 transition-all duration-500 border border-white/5"
+          style={{ backgroundImage: `url(${project.image})`, transform: "translateZ(25px)" }}
+        >
+          <div className="absolute inset-0 bg-transparent group-hover:bg-emerald-500/5 transition-colors duration-500"></div>
+        </div>
+
+        <div className="flex-grow flex flex-col font-sans" style={{ transform: "translateZ(35px)" }}>
+          <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors mb-2 leading-snug">
             {project.title}
           </h3>
 
-          <p className="text-gray-400 text-sm mb-5 leading-relaxed flex-grow" style={{ transform: "translateZ(30px)" }}>
+          <p className="text-gray-400 text-xs mb-4 leading-relaxed flex-grow line-clamp-3">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-6" style={{ transform: "translateZ(25px)" }}>
+          <div className="flex flex-wrap gap-1.5 mb-4 font-mono-code" style={{ transform: "translateZ(20px)" }}>
             {project.tech.map((tech) => (
-              <span key={tech} className="text-xs font-medium text-white px-3 py-1 rounded-full border border-brand-cyan/70 bg-transparent">
-                {tech}
+              <span key={tech} className="text-[10px] text-emerald-300 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30">
+                [{tech.toLowerCase()}]
               </span>
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-4 mt-auto pt-2" style={{ transform: "translateZ(35px)" }}>
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-brand-cyan/20 hover:border-brand-cyan text-gray-300 hover:text-brand-cyan px-4 py-2 rounded-xl text-sm transition-colors w-max flex-shrink-0">
-              <FaGithub size={14} />
-              Source Code
+          <div className="flex flex-wrap gap-4 mt-auto pt-2 font-mono-code" style={{ transform: "translateZ(30px)" }}>
+            <a 
+              href={project.github} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-2 border border-emerald-500/30 hover:border-emerald-400 bg-emerald-500/10 text-emerald-300 hover:text-white px-3.5 py-1.5 rounded-lg text-xs transition-all w-max flex-shrink-0"
+            >
+              <FaGithub size={13} />
+              <span>$ gh repo view</span>
             </a>
           </div>
         </div>
@@ -166,11 +186,18 @@ const ProjectsSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16 border-l-4 border-brand-cyan pl-6 flex justify-between items-end"
+          className="mb-16 border-l-4 border-emerald-400 pl-6 flex justify-between items-end font-mono-code"
         >
           <div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Projects</span></h2>
-            <p className="text-gray-400 mt-2">Real-world solutions and interactive deployments. Showing {Math.min(currentPage * itemsPerPage + 1, projects.length)}-{Math.min((currentPage + 1) * itemsPerPage, projects.length)} of {projects.length} projects.</p>
+            <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold mb-2">
+              <span>sachintha@arch:~$ ls -la /var/deployments/</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight font-sans">
+              Production <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-brand-cyan to-brand-purple">Deployments</span>
+            </h2>
+            <p className="text-gray-400 text-xs sm:text-sm font-sans">
+              Containerized architectures, IaC blueprints, and multi-OS server orchestration. Showing {Math.min(currentPage * itemsPerPage + 1, projects.length)}-{Math.min((currentPage + 1) * itemsPerPage, projects.length)} of {projects.length} repos.
+            </p>
           </div>
         </motion.div>
 

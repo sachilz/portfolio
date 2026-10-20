@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaYoutube, FaMedium, FaArrowUp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaYoutube, FaMedium, FaArrowUp, FaLinux } from 'react-icons/fa';
 
 const socials = [
-  { icon: FaGithub, href: 'https://github.com/sachilz', label: 'GitHub', hoverColor: '#ffffff' },
-  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/sachilz/', label: 'LinkedIn', hoverColor: '#0A66C2' },
-  { icon: FaYoutube, href: 'https://www.youtube.com/@NextOpz', label: 'YouTube', hoverColor: '#FF0000' },
+  { icon: FaGithub, href: 'https://github.com/sachilz', label: 'GitHub', hoverColor: '#00ff66' },
+  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/sachilz/', label: 'LinkedIn', hoverColor: '#00f0ff' },
+  { icon: FaYoutube, href: 'https://www.youtube.com/@NextOpz', label: 'YouTube', hoverColor: '#ff4444' },
   { icon: FaMedium, href: 'https://medium.com/@sachilz', label: 'Medium', hoverColor: '#ffffff' },
 ];
 
@@ -13,24 +13,32 @@ const Footer = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="relative z-10 border-t border-white/10">
+    <footer className="relative z-10 border-t border-white/10 font-mono-code">
 
-      <div className="bg-[#07070a]/90 backdrop-blur-xl px-6 md:px-12 lg:px-20 py-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-[#06080d]/95 backdrop-blur-xl px-6 md:px-12 lg:px-20 py-4">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
 
-          {/* Left — Branding */}
-          <motion.p
+          {/* Left — Linux Tmux / System Statusline */}
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-xs font-mono text-gray-500 whitespace-nowrap"
+            className="flex items-center gap-3 text-gray-400 flex-wrap justify-center md:justify-start"
           >
-            © {new Date().getFullYear()}{' '}
-            <span className="text-gray-300 font-semibold">
-              Sachintha Dissanayaka
+            <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
+              <FaLinux size={15} />
+              <span>archlinux-lts</span>
+            </div>
+            <span className="text-gray-600">|</span>
+            <span className="text-gray-400">utf-8</span>
+            <span className="text-gray-600">|</span>
+            <span className="text-emerald-400">exit 0</span>
+            <span className="text-gray-600">|</span>
+            <span className="text-gray-300 font-medium">
+              © {new Date().getFullYear()} Sachintha Dissanayaka
             </span>
-          </motion.p>
+          </motion.div>
 
           {/* Right — Socials + Back to Top */}
           <motion.div

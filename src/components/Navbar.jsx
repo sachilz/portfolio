@@ -20,6 +20,7 @@ const Navbar = () => {
     <>
       {/* Brand Logo Fixed Top Left */}
       <div
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className={`fixed z-[60] left-6 lg:left-10 transition-all duration-500 text-xl md:text-2xl font-bold font-['Outfit'] tracking-tighter cursor-pointer text-white ${scrolled ? 'top-5' : 'top-8'}`}
       >
         Sachintha<span className="text-brand-cyan ml-1">.</span>
@@ -50,6 +51,7 @@ const Navbar = () => {
       <button
         className={`md:hidden fixed z-[60] right-6 transition-all duration-500 text-white text-xl focus:outline-none p-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-full shadow-lg hover:bg-white/20 hover:scale-105 active:scale-95 ${scrolled ? 'top-3' : 'top-5'}`}
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        aria-label="Toggle Navigation Menu"
       >
         {mobileMenuOpen ? <FaTimes /> : <FaBars />}
       </button>

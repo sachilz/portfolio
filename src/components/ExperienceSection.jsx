@@ -161,16 +161,31 @@ const TimelineCard = ({ item, isEven }) => {
           rotateX,
           transformStyle: "preserve-3d",
         }}
-        className="bg-[#111116]/85 backdrop-blur-xl border border-white/10 p-7 md:p-8 rounded-2xl hover:border-brand-cyan/40 transition-colors duration-500 shadow-2xl h-full w-full group relative overflow-hidden"
+        className="bg-[#0a0d14]/90 backdrop-blur-xl border border-white/10 p-6 md:p-7 rounded-xl hover:border-emerald-500/40 transition-colors duration-500 shadow-2xl h-full w-full group relative overflow-hidden font-mono-code"
       >
+        {/* Terminal Chrome Bar */}
+        <div className="flex items-center justify-between pb-2 mb-3 border-b border-white/5 text-[9px] text-gray-500 select-none">
+          <div className="flex items-center space-x-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff5f56]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ffbd2e]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#27c93f]" />
+            <span className="ml-1 text-gray-400 truncate max-w-[170px]">
+              daemon: {item.title.toLowerCase().replace(/[^a-z0-9]/g, '_').slice(0, 24)}.service
+            </span>
+          </div>
+          <span className="text-emerald-400 font-bold text-[9px]">
+            [SYSTEMD: ACTIVE]
+          </span>
+        </div>
+
         <div style={{ transform: "translateZ(40px)" }}>
           {/* Header Row: Type & Subtitle */}
           <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
-            <span className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${item.brandBg}`}>
+            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded text-[11px] font-bold uppercase tracking-wider border ${item.brandBg}`}>
               {item.type}
             </span>
             {item.subtitle && (
-              <span className="text-xs font-mono text-gray-400 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+              <span className="text-xs font-mono text-gray-400 px-2.5 py-0.5 rounded bg-white/5 border border-white/10">
                 {item.subtitle}
               </span>
             )}
@@ -275,16 +290,19 @@ const ExperienceSection = () => {
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header with Switcher Button */}
-        <div className="mb-16 border-l-4 border-brand-cyan pl-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="mb-16 border-l-4 border-emerald-400 pl-6 flex flex-col md:flex-row md:items-end justify-between gap-6 font-mono-code">
           <div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-3 tracking-tight">
+            <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold mb-2">
+              <span>sachintha@arch:~$ journalctl -u career-milestones.service -n 10</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight font-sans">
               {activeTab === 'experience' ? (
-                <>Work <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Experience</span></>
+                <>Work <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-brand-cyan to-brand-purple">Experience</span></>
               ) : (
-                <>Academic <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Education</span></>
+                <>Academic <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-brand-cyan to-brand-purple">Education</span></>
               )}
             </h2>
-            <p className="text-gray-400 text-sm max-w-xl">
+            <p className="text-gray-400 text-xs sm:text-sm max-w-xl font-sans">
               {activeTab === 'experience'
                 ? "Professional milestones, community leadership, content creation, and technical education."
                 : "The academic foundation of my information technology and DevOps engineering journey."
@@ -294,43 +312,43 @@ const ExperienceSection = () => {
 
           {/* Interactive Switcher Toggle */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <div className="flex items-center gap-2 p-1.5 bg-[#0a0a0f]/90 border border-white/10 rounded-2xl backdrop-blur-xl shadow-xl">
+            <div className="flex items-center gap-1.5 p-1.5 bg-[#0a0d14]/90 border border-white/10 rounded-xl backdrop-blur-xl shadow-xl">
               <button
                 onClick={() => setActiveTab('experience')}
-                className={`relative px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 ${
+                className={`relative px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
                   activeTab === 'experience' ? 'text-white' : 'text-gray-400 hover:text-gray-200'
                 }`}
               >
                 {activeTab === 'experience' && (
                   <motion.div
                     layoutId="activeLadderTab"
-                    className="absolute inset-0 bg-gradient-to-r from-brand-cyan/25 to-brand-purple/25 border border-brand-cyan/60 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+                    className="absolute inset-0 bg-emerald-500/20 border border-emerald-500/50 rounded-lg shadow-[0_0_20px_rgba(0,255,102,0.25)]"
                     transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                   />
                 )}
-                <FaBriefcase className="relative z-10 text-brand-cyan" size={13} />
-                <span className="relative z-10">Experience</span>
-                <span className="relative z-10 text-[10px] font-mono px-2 py-0.5 rounded-full bg-brand-cyan/20 text-brand-cyan font-bold">
+                <FaBriefcase className="relative z-10 text-emerald-400" size={13} />
+                <span className="relative z-10 font-mono">/var/experience</span>
+                <span className="relative z-10 text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-300 font-bold">
                   {experienceData.length}
                 </span>
               </button>
 
               <button
                 onClick={() => setActiveTab('education')}
-                className={`relative px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 ${
+                className={`relative px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
                   activeTab === 'education' ? 'text-white' : 'text-gray-400 hover:text-gray-200'
                 }`}
               >
                 {activeTab === 'education' && (
                   <motion.div
                     layoutId="activeLadderTab"
-                    className="absolute inset-0 bg-gradient-to-r from-brand-cyan/25 to-brand-purple/25 border border-brand-cyan/60 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+                    className="absolute inset-0 bg-brand-cyan/20 border border-brand-cyan/50 rounded-lg shadow-[0_0_20px_rgba(0,240,255,0.25)]"
                     transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                   />
                 )}
-                <FaGraduationCap className="relative z-10 text-brand-purple" size={15} />
-                <span className="relative z-10">Education</span>
-                <span className="relative z-10 text-[10px] font-mono px-2 py-0.5 rounded-full bg-brand-purple/20 text-brand-purple font-bold">
+                <FaGraduationCap className="relative z-10 text-brand-cyan" size={14} />
+                <span className="relative z-10 font-mono">/etc/education</span>
+                <span className="relative z-10 text-[10px] font-mono px-1.5 py-0.5 rounded bg-brand-cyan/20 text-brand-cyan font-bold">
                   {educationData.length}
                 </span>
               </button>

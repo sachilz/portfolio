@@ -70,14 +70,17 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 font-mono-code"
         >
-          <h2 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-4 flex items-center justify-center gap-4">
-            <FaTerminal className="text-brand-cyan" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple">Initialize Connection</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs mb-3">
+            <FaTerminal size={11} />
+            <span>$ netcat -vlp 443 --allow-guest</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-4 flex items-center justify-center gap-4 font-sans">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-brand-cyan to-brand-purple">Open Remote SSH Session</span>
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto font-mono text-sm uppercase tracking-widest">
-            Execute protocol to establish communication
+          <p className="text-gray-400 max-w-xl mx-auto font-mono text-xs uppercase tracking-widest">
+            Send transmission packet to initiate encrypted communication
           </p>
         </motion.div>
 
@@ -89,38 +92,38 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, type: 'spring' }}
-            className="w-full lg:w-2/3 bg-[#0a0a0f]/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden shadow-brand-cyan/10 relative"
+            className="w-full lg:w-2/3 bg-[#0a0d14]/95 backdrop-blur-xl rounded-xl border border-white/10 shadow-2xl overflow-hidden relative font-mono-code"
           >
             {/* Terminal Top Bar */}
-            <div className="bg-[#1a1a24] px-4 py-3 flex items-center border-b border-white/5 relative">
-              <div className="flex gap-2 relative z-10">
-                <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+            <div className="bg-[#0e131f] px-4 py-2.5 flex items-center border-b border-white/5 relative">
+              <div className="flex gap-1.5 relative z-10">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80 shadow-[0_0_8px_rgba(239,68,68,0.5)]"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 shadow-[0_0_8px_rgba(234,179,8,0.5)]"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/80 shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
               </div>
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <span className="text-xs text-gray-500 font-mono tracking-wider">visitor@sachilz-sys:~</span>
+                <span className="text-xs text-gray-400 font-mono tracking-wider">sachintha@archlinux: ~/contact (ssh)</span>
               </div>
             </div>
 
             {/* Terminal Content */}
-            <div className="p-6 md:p-8 font-mono text-sm md:text-base relative w-full h-full min-h-[400px] flex flex-col">
+            <div className="p-6 md:p-8 font-mono text-xs md:text-sm relative w-full h-full min-h-[400px] flex flex-col">
 
               {/* Scanline overlay */}
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.02),rgba(255,255,255,0))] bg-[length:100%_4px] opacity-20 pointer-events-none z-0"></div>
+              <div className="absolute inset-0 terminal-scanlines opacity-20 pointer-events-none z-0"></div>
 
               <div className="relative z-10 flex flex-col gap-4 flex-grow">
 
                 <div className="text-gray-400">
-                  <span className="text-brand-cyan font-bold">visitor@sachilz-sys</span>:<span className="text-brand-purple">~</span>$ ./contact_me.sh
+                  <span className="text-emerald-400 font-bold">guest@arch-terminal</span>:<span className="text-brand-cyan">~</span>$ ssh -p 443 contact@sachintha.dev
                 </div>
 
-                <div className="text-gray-300">
-                  <TypewriterText text="Initializing secure handshake..." delay={500} />
+                <div className="text-gray-400">
+                  <TypewriterText text="Authenticating RSA host key... verified." delay={400} />
                 </div>
 
-                <div className="text-emerald-400">
-                  <TypewriterText text="Connection established on port 443." delay={1500} />
+                <div className="text-emerald-400 font-semibold">
+                  <TypewriterText text="[OK] Secure TTY socket opened. Enter message parameters:" delay={1200} />
                 </div>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4 relative">

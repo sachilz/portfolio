@@ -56,8 +56,24 @@ const OverviewCard = ({ title, subtitle, count, icon: Icon, targetId, index, col
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className={`group cursor-pointer bg-[#111116]/90 backdrop-blur-3xl border border-white/5 ${colorClass.hoverBorder} rounded-2xl p-6 md:p-8 flex flex-col justify-between h-48 md:h-56 transition-[box-shadow,border-color,transform] duration-300 hover:shadow-[0_10px_40px_${shadowClass}] relative overflow-hidden`}
+        className={`group cursor-pointer bg-[#0a0d14]/90 backdrop-blur-3xl border border-white/10 ${colorClass.hoverBorder} rounded-xl p-5 md:p-6 flex flex-col justify-between h-52 md:h-60 transition-[box-shadow,border-color,transform] duration-300 hover:shadow-[0_10px_40px_${shadowClass}] relative overflow-hidden font-mono-code`}
       >
+        {/* Terminal Header Bar */}
+        <div className="flex items-center justify-between pb-3 border-b border-white/5 relative z-10 w-full text-[10px] text-gray-400">
+          <div className="flex items-center space-x-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#ff5f56]" />
+            <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
+            <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
+          </div>
+          <span className="text-gray-400 font-mono text-[10px] truncate max-w-[150px]">
+            {targetId}.service
+          </span>
+          <span className="text-emerald-400 font-bold text-[9px] flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            RUNNING
+          </span>
+        </div>
+
         <div style={{ transform: "translateZ(30px)" }} className="absolute inset-0 z-0 pointer-events-none">
           {/* Background Glow */}
           <div className={`absolute inset-0 bg-gradient-to-br ${colorClass.from} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
@@ -67,22 +83,22 @@ const OverviewCard = ({ title, subtitle, count, icon: Icon, targetId, index, col
         </div>
 
         {/* Top Row: Icon and Count */}
-        <div className="flex justify-between items-start relative z-10 w-full mb-8 pointer-events-none" style={{ transform: "translateZ(40px)" }}>
-          <div className={`w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 ${colorClass.groupBg} ${colorClass.groupText} transition-colors duration-500 border border-white/5 ${colorClass.groupBorder}`}>
-            <Icon className="text-xl" />
+        <div className="flex justify-between items-center relative z-10 w-full my-auto pointer-events-none" style={{ transform: "translateZ(40px)" }}>
+          <div className={`w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 ${colorClass.groupBg} ${colorClass.groupText} transition-colors duration-500 border border-white/10 ${colorClass.groupBorder}`}>
+            <Icon className="text-lg" />
           </div>
-          <span className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 drop-shadow-xl filter tracking-tighter">
-            {count}
+          <span className="text-4xl md:text-5xl font-extrabold text-white group-hover:text-emerald-400 transition-colors drop-shadow-lg tracking-tight font-mono">
+            {count < 10 ? `0${count}` : count}
           </span>
         </div>
 
         {/* Bottom Row: Text and Arrow */}
         <div className="flex justify-between items-end relative z-10 w-full mt-auto pointer-events-none" style={{ transform: "translateZ(50px)" }}>
-          <div className="flex flex-col gap-1 w-4/5">
-            <h3 className="text-xs tracking-[0.2em] text-gray-300 font-bold uppercase drop-shadow-md">{title}</h3>
-            <p className="text-sm text-gray-500 font-medium group-hover:text-gray-300 transition-colors duration-300 line-clamp-1">{subtitle}</p>
+          <div className="flex flex-col gap-0.5 w-4/5">
+            <h3 className="text-[11px] tracking-wider text-gray-300 font-bold uppercase">{title}</h3>
+            <p className="text-xs text-gray-500 font-normal group-hover:text-gray-300 transition-colors duration-300 line-clamp-1">{subtitle}</p>
           </div>
-          <FiArrowUpRight className={`text-gray-500 ${colorClass.groupText} transition-all duration-500 text-2xl mb-1 transform group-hover:translate-x-1 group-hover:-translate-y-1`} />
+          <FiArrowUpRight className={`text-gray-500 ${colorClass.groupText} transition-all duration-500 text-xl mb-0.5 transform group-hover:translate-x-1 group-hover:-translate-y-1`} />
         </div>
       </motion.div>
     </motion.div>
