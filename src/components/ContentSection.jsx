@@ -10,6 +10,7 @@ import vidImg6 from '../assets/images/maxresdefault (4).png';
 import artImg1 from '../assets/images/medium_01.webp';
 import artImg2 from '../assets/images/medium_02.webp';
 import artImg3 from '../assets/images/medium_03.jpg';
+import artImg4 from '../assets/images/medium_04.jpg';
 
 export const videos = [
   { title: "Jenkins Tutorial for Beginners | Install, Setup & Run First Pipeline", description: "Learn how to install, set up, and run your first pipeline using Jenkins in this comprehensive beginner's guide.", thumbnail: vidImg1, link: "https://www.youtube.com/watch?v=8etoaL6szeY&t=526s" },
@@ -21,9 +22,34 @@ export const videos = [
 ];
 
 export const articles = [
-  { title: "C programming-Introduction", description: "Share my journey into web development starting from static websites and the fundamentals that...", date: "May 26, 2024", thumbnail: artImg1, link: "https://medium.com/@sachilz/c-programming-introduction-9e07a18c8776" },
-  { title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", description: "A detailed breakdown of how to architecture and deploy a complete MERN stack application leveraging Docker and Nginx.", date: "April 03, 2026", thumbnail: artImg2, link: "https://medium.com/@sachilz/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" },
-  { title: "What is MLOps: Why It's More Than Just Coding", description: "An exploration into the world of MLOps. Discover why deploying machine learning models requires more than just writing code.", date: "April 09, 2026", thumbnail: artImg3, link: "https://medium.com/@sachilz" }
+  { 
+    title: "What is MLOps: Why It's More Than Just Coding", 
+    description: "An exploration into the world of MLOps. Discover why deploying machine learning models requires more than just writing code.", 
+    date: "April 09, 2026", 
+    thumbnail: artImg3, 
+    link: "https://medium.com/@sachilz/what-is-mlops-why-its-more-than-just-coding-3b9b6c9d043b" 
+  },
+  { 
+    title: "How I Solved My React-Node Backend Connection Issue with Nginx in My MERN To-Do App", 
+    description: "A troubleshooting breakdown of resolving frontend-to-backend network proxying and CORS issues in a Dockerized MERN stack using Nginx reverse proxy.", 
+    date: "April 05, 2026", 
+    thumbnail: artImg4, 
+    link: "https://medium.com/@sachilz/how-i-solved-my-react-node-backend-connection-issue-with-nginx-in-my-mern-todo-app-57c49eb61d4d" 
+  },
+  { 
+    title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", 
+    description: "A detailed breakdown of how to architecture and deploy a complete MERN stack application leveraging Docker and Nginx.", 
+    date: "April 03, 2026", 
+    thumbnail: artImg2, 
+    link: "https://medium.com/@sachilz/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" 
+  },
+  { 
+    title: "C programming-Introduction", 
+    description: "Share my journey into web development starting from static websites and the fundamentals that...", 
+    date: "May 26, 2024", 
+    thumbnail: artImg1, 
+    link: "https://medium.com/@sachilz/c-programming-introduction-9e07a18c8776" 
+  }
 ];
 
 const VideoCard = ({ vid, index }) => {
