@@ -1,87 +1,53 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaLinux, FaAws, FaDocker, FaGithub, FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaPython, FaJava, FaBrain, FaRobot, FaCloud, FaServer, FaCodeBranch, FaChartLine } from 'react-icons/fa';
-import { SiKubernetes, SiTerraform, SiAnsible, SiPrometheus, SiGrafana, SiTailwindcss, SiJavascript, SiTypescript, SiPostgresql, SiGo, SiMongodb, SiExpress, SiTensorflow, SiPytorch } from 'react-icons/si';
+import { FaLinux, FaAws, FaDocker, FaGithub, FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaPython, FaJava, FaCloud, FaServer, FaCodeBranch, FaChartLine, FaDatabase, FaShieldAlt, FaNetworkWired, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { SiKubernetes, SiTerraform, SiAnsible, SiPrometheus, SiGrafana, SiTailwindcss, SiJavascript, SiTypescript, SiPostgresql, SiGo, SiMongodb, SiExpress, SiApachekafka, SiApachespark, SiSnowflake } from 'react-icons/si';
 
 export const devOpsSkills = [
-  { name: 'Linux', icon: FaLinux, color: 'text-yellow-500', level: 75, description: 'The core operating system powering my infrastructure, utilized for high-performance server management, secure networking, and robust automation.' },
-  { name: 'AWS', icon: FaAws, color: 'text-orange-500', level: 40, description: 'Cloud provider used to architect globally distributed, highly-available, and strictly secured microservice infrastructure patterns.' },
+  { name: 'Linux', icon: FaLinux, color: 'text-yellow-500', level: 90, description: 'The core operating system powering my infrastructure, utilized for heterogeneous multi-OS management (Ubuntu, CentOS), package workflows, systemd daemons, and secure shell automation.' },
+  { name: 'AWS', icon: FaAws, color: 'text-orange-500', level: 88, description: 'Core cloud provider used to architect VPC networking, public route tables, security groups, EC2 instances, ECR repositories, and IAM programmatic access.' },
   { name: 'Docker', icon: FaDocker, color: 'text-blue-500', level: 95, description: 'Essential containerization engine guaranteeing isolated, strictly reproducible software environments from local testing straight into production.' },
   { name: 'Kubernetes', icon: SiKubernetes, color: 'text-blue-600', level: 10, description: 'Industry-standard orchestration layer natively managing containerized workloads, auto-scaling operations, and self-healing deployment meshes.' },
-  { name: 'Terraform', icon: SiTerraform, color: 'text-purple-500', level: 10, description: 'Infrastructure as Code (IaC) layer utilized to declaratively provision, mutate, and safely version-control complex cloud service resources.' },
-  { name: 'Ansible', icon: SiAnsible, color: 'text-red-500', level: 10, description: 'Configuration management platform executing automated, agentless provisioning workflows to enforce precise state consistency across server fleets.' },
+  { name: 'Terraform', icon: SiTerraform, color: 'text-purple-500', level: 80, description: 'Infrastructure as Code (IaC) layer utilized to declaratively build custom VPCs, route tables, subnets, and EC2 resources with reproducible lifecycle state.' },
+  { name: 'Ansible', icon: SiAnsible, color: 'text-red-500', level: 85, description: 'Configuration management platform executing automated playbooks, modular roles, and multi-OS server fleet provisioning across Ubuntu and CentOS.' },
   { name: 'Prometheus', icon: SiPrometheus, color: 'text-orange-400', level: 10, description: 'Centralized time-series metrics core dedicated to continuously monitoring system-level events and generating high-accuracy observability telemetry.' },
   { name: 'Grafana', icon: SiGrafana, color: 'text-orange-600', level: 10, description: 'Advanced data visualization engine automatically parsing raw telemetry to generate actionable infrastructure observability dashboards.' },
-  { name: 'CI/CD Pipelines', icon: FaGithub, color: 'text-white', level: 90, description: 'Automated Continuous Integration and Delivery pipelines ensuring frictionless, rigorously tested code deployment straight from repository to server.' },
+  { name: 'CI/CD Pipelines', icon: FaGithub, color: 'text-white', level: 95, description: 'Multi-stage automated Continuous Integration & Delivery pipelines integrating Gitleaks secret detection, SonarQube quality analysis, and Trivy vulnerability scans.' },
+];
+
+export const cloudEngineeringSkills = [
+  { name: 'AWS Cloud', icon: FaAws, color: 'text-orange-500', level: 90, category: 'Cloud Platform', tagline: 'VPC, EC2, IAM, ECR & Security Group Topology', status: 'Core' },
+  { name: 'Terraform', icon: SiTerraform, color: 'text-purple-500', level: 85, category: 'IaC Automation', tagline: 'Declarative Cloud Provisioning & State Management', status: 'Core' },
+  { name: 'Linux Systems', icon: FaLinux, color: 'text-yellow-500', level: 90, category: 'Operating System', tagline: 'Heterogeneous Multi-OS Ubuntu, CentOS & Systemd Daemons', status: 'Core' },
+  { name: 'Docker', icon: FaDocker, color: 'text-blue-500', level: 95, category: 'Containerization', tagline: 'Production Multi-Stage Images & Compose Orchestration', status: 'Core' },
+  { name: 'CI/CD Automation', icon: FaGithub, color: 'text-white', level: 95, category: 'Delivery Pipeline', tagline: 'Jenkins Multi-Stage Pipelines with Automated Security Scanning', status: 'Core' },
+  { name: 'Cloud Networking', icon: FaNetworkWired, color: 'text-cyan-400', level: 85, category: 'Networking', tagline: 'Custom VPC Subnets, Internet Gateways & CIDR Routing', status: 'Core' },
+  { name: 'Cloud Security', icon: FaShieldAlt, color: 'text-emerald-400', level: 85, category: 'DevSecOps', tagline: 'Pre-Deployment Gitleaks, SonarQube & Trivy Security Gates', status: 'Core' },
+  { name: 'Kubernetes', icon: SiKubernetes, color: 'text-blue-600', level: 25, category: 'Orchestration', tagline: 'Foundational Container Pods, Deployments & Cluster Concepts', status: 'Exploring' },
+];
+
+export const dataEngineeringSkills = [
+  { name: 'Python', icon: FaPython, color: 'text-yellow-400', level: 60, category: 'Scripting', tagline: 'Automated Cloud Scripting, Boto3 SDK & Data Processing', status: 'Scripting' },
+  { name: 'MongoDB', icon: SiMongodb, color: 'text-green-500', level: 50, category: 'NoSQL Database', tagline: 'Document Store Schemas, Queries & Data Aggregations', status: 'Applied' },
+  { name: 'SQL / Databases', icon: FaDatabase, color: 'text-blue-400', level: 40, category: 'Relational DB', tagline: 'Relational Schemas, CRUD Queries & MariaDB Server Setup', status: 'Foundational' },
+  { name: 'PostgreSQL', icon: SiPostgresql, color: 'text-indigo-400', level: 25, category: 'RDBMS', tagline: 'Structured Data Storage & Relational Architecture Concepts', status: 'Enthusiast' },
+  { name: 'Data Pipelines', icon: FaChartLine, color: 'text-cyan-400', level: 20, category: 'Pipeline Design', tagline: 'Foundational ETL Flow Design & Automated Data Syncing', status: 'Enthusiast' },
+  { name: 'Apache Kafka', icon: SiApachekafka, color: 'text-red-500', level: 15, category: 'Event Streaming', tagline: 'Distributed Pub/Sub Topics & Real-Time Event Stream Concepts', status: 'Enthusiast' },
+  { name: 'Apache Spark', icon: SiApachespark, color: 'text-orange-500', level: 12, category: 'Big Data Processing', tagline: 'Distributed Batch Processing & Cluster Computation Theory', status: 'Enthusiast' },
+  { name: 'Snowflake', icon: SiSnowflake, color: 'text-sky-300', level: 10, category: 'Cloud Warehouse', tagline: 'Modern Cloud Data Warehousing & Analytical Storage Concepts', status: 'Enthusiast' },
 ];
 
 export const mernStackSkills = [
-  { name: 'MongoDB', icon: SiMongodb, color: 'text-green-500', level: 85 },
-  { name: 'Express.js', icon: SiExpress, color: 'text-gray-300', level: 80 },
-  { name: 'React', icon: FaReact, color: 'text-blue-400', level: 90 },
-  { name: 'Node.js', icon: FaNodeJs, color: 'text-green-500', level: 90 },
-  { name: 'JavaScript', icon: SiJavascript, color: 'text-yellow-400', level: 95 },
-  { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-600', level: 85 },
-  { name: 'Tailwind CSS', icon: SiTailwindcss, color: 'text-cyan-400', level: 95 },
+  { name: 'React', icon: FaReact, color: 'text-blue-400', level: 90, category: 'Frontend Core', tagline: 'Interactive SPAs, Modern Hooks & State Management', status: 'Production' },
+  { name: 'Node.js', icon: FaNodeJs, color: 'text-green-500', level: 90, category: 'Backend Runtime', tagline: 'Asynchronous Event-Driven Services & Microservice APIs', status: 'Production' },
+  { name: 'MongoDB', icon: SiMongodb, color: 'text-green-500', level: 85, category: 'Database Tier', tagline: 'Clustered Document Database & Containerized Persistence', status: 'Production' },
+  { name: 'Express.js', icon: SiExpress, color: 'text-gray-300', level: 80, category: 'API Routing', tagline: 'RESTful API Routing, Middleware & Authentication Handlers', status: 'Production' },
+  { name: 'JavaScript (ES6+)', icon: SiJavascript, color: 'text-yellow-400', level: 95, category: 'Core Language', tagline: 'Async/Await, Closures, DOM Architecture & Event Loops', status: 'Production' },
+  { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-600', level: 85, category: 'Typed Language', tagline: 'Strict Type Safety, Interfaces & Generics Architecture', status: 'Production' },
+  { name: 'Tailwind CSS', icon: SiTailwindcss, color: 'text-cyan-400', level: 95, category: 'UI Styling', tagline: 'High-Performance Utility-First Design Systems & Animations', status: 'Production' },
 ];
 
-export const aiMlSkills = [
-  { name: 'Python', icon: FaPython, color: 'text-yellow-400', level: 90 },
-  { name: 'AI/ML Theory', icon: FaBrain, color: 'text-pink-400', level: 10 },
-  { name: 'MLOps Workflows', icon: FaRobot, color: 'text-brand-cyan', level: 8 },
-  { name: 'TensorFlow', icon: SiTensorflow, color: 'text-orange-500', level: 5 },
-  { name: 'PyTorch', icon: SiPytorch, color: 'text-red-500', level: 5 },
-];
 
-// Helper Component for Skill Cards
-const SkillCard = ({ skill, index, isMarquee = false }) => (
-  <motion.div
-    initial={isMarquee ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-    whileInView={isMarquee ? undefined : { opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.4, delay: isMarquee ? 0 : index * 0.05 }}
-    whileHover={{
-      scale: 1.04,
-      y: -8,
-      boxShadow: "0px 15px 35px rgba(0, 240, 255, 0.15)",
-      borderColor: "rgba(0, 240, 255, 0.4)",
-      backgroundColor: "rgba(0, 240, 255, 0.03)",
-      transition: { type: "spring", stiffness: 400, damping: 15 }
-    }}
-    whileTap={{ scale: 0.96 }}
-    style={{ borderColor: "rgba(255, 255, 255, 0.05)" }}
-    className="bg-brand-card border-2 rounded-2xl p-5 flex flex-col items-center justify-center gap-3 cursor-pointer group relative overflow-hidden"
-  >
-    {/* Background Interaction Layer */}
-    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors z-0"></div>
-
-    {/* Skill Icon */}
-    <skill.icon className={`text-5xl ${skill.color} group-hover:scale-125 group-hover:-translate-y-1 transition-transform duration-300 z-10 pointer-events-none`} />
-
-    {/* Skill Name */}
-    <span className="text-sm font-bold tracking-wide text-gray-200 group-hover:text-white transition-colors duration-200 text-center z-10 pointer-events-none mt-1">
-      {skill.name}
-    </span>
-
-    {/* Modern Percentage Bar */}
-    <div className={`w-full mt-2 z-10 pointer-events-none ${skill.color}`}>
-      <div className="flex justify-between items-center mb-1.5 px-1">
-        <span className="text-[10px] uppercase tracking-wider text-gray-400 font-semibold group-hover:text-white/80 transition-colors">Proficiency</span>
-        <span className="text-xs font-mono font-bold">{skill.level}%</span>
-      </div>
-      <div className="w-full bg-black/50 rounded-full h-1.5 overflow-hidden shadow-inner" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-        <motion.div
-          initial={{ width: 0 }}
-          animate={isMarquee ? { width: `${skill.level}%` } : undefined}
-          whileInView={isMarquee ? undefined : { width: `${skill.level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: isMarquee ? 0 : 0.3 + (index * 0.05), ease: "easeOut" }}
-          className="h-full bg-current rounded-full shadow-[0_0_8px_currentColor] relative"
-        />
-      </div>
-    </div>
-  </motion.div>
-);
 
 // DevOps Cyber Mesh Network Component
 const DevOpsMeshChart = ({ skills }) => {
@@ -374,35 +340,354 @@ const DevOpsMeshChart = ({ skills }) => {
 };
 
 
-const MarqueeRow = ({ title, skills, direction = "left", speedMultiplier = 3.2, colorClass }) => {
-  // Creating a 4x repetition guarantees we have enough width to seamlessly loop 50% of the track length
-  const duplicatedSkills = [...skills, ...skills, ...skills, ...skills];
+// Interactive Modern Skill Card with Dynamic Cursor Spotlight & Circular SVG Gauge (Optimized for 2-column layout)
+const ModernSkillCard = ({ skill, index }) => {
+  const cardRef = useRef(null);
+  const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
 
-  // Calculate a dynamic duration so that arrays of different lengths travel at a steady visual speed based on the multiplier
-  const calculatedDuration = skills.length * 2 * speedMultiplier;
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const radius = 18;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (skill.level / 100) * circumference;
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Core':
+      case 'Production':
+        return 'border-brand-cyan/40 text-brand-cyan bg-brand-cyan/10';
+      case 'Enthusiast':
+      case 'Exploring':
+        return 'border-brand-purple/40 text-purple-300 bg-brand-purple/10';
+      case 'Scripting':
+      case 'Applied':
+        return 'border-amber-400/40 text-amber-300 bg-amber-500/10';
+      default:
+        return 'border-white/20 text-gray-300 bg-white/5';
+    }
+  };
 
   return (
-    <div className="w-full mt-10">
-      <div className={`flex items-center gap-4 mb-8 border-b ${colorClass} pb-3 inline-block`}>
-        <h3 className="text-3xl font-bold text-white">{title}</h3>
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setMousePos({ x: -100, y: -100 })}
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.97 }}
+      transition={{ duration: 0.3, delay: index * 0.03 }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className="relative rounded-2xl bg-[#0b0c12]/90 border border-white/10 hover:border-brand-cyan/40 p-5 overflow-hidden group shadow-lg backdrop-blur-xl transition-[border-color,box-shadow] duration-300"
+    >
+      {/* Interactive Cursor Spotlight Glow */}
+      <div
+        className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+        style={{
+          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 240, 255, 0.12), transparent 70%)`
+        }}
+      />
+
+      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        {/* Left Side: Icon + Details */}
+        <div className="flex items-start gap-4 flex-grow min-w-0">
+          <div className={`p-3.5 rounded-xl bg-black/60 border border-white/10 ${skill.color} shadow-inner group-hover:scale-105 group-hover:shadow-[0_0_20px_currentColor] transition-all duration-300 flex-shrink-0 mt-0.5`}>
+            <skill.icon size={26} />
+          </div>
+
+          <div className="flex flex-col min-w-0 flex-grow">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500 font-medium">
+                {skill.category}
+              </span>
+              <span className={`text-[9px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full border ${getStatusColor(skill.status)} font-semibold`}>
+                {skill.status}
+              </span>
+            </div>
+
+            <h4 className="text-base sm:text-lg font-bold text-white group-hover:text-brand-cyan transition-colors truncate">
+              {skill.name}
+            </h4>
+
+            <p className="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed">
+              {skill.tagline}
+            </p>
+          </div>
+        </div>
+
+        {/* Right Side: Circular Gauge & Tier */}
+        <div className="flex sm:flex-col items-center justify-between sm:justify-center gap-2 sm:pl-4 sm:border-l border-white/5 flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0">
+          <div className="relative w-12 h-12 flex items-center justify-center">
+            <svg className="w-12 h-12 -rotate-90 transform" viewBox="0 0 44 44">
+              <circle
+                cx="22"
+                cy="22"
+                r={radius}
+                className="text-white/10"
+                strokeWidth="3.5"
+                stroke="currentColor"
+                fill="transparent"
+              />
+              <motion.circle
+                cx="22"
+                cy="22"
+                r={radius}
+                className={skill.color}
+                strokeWidth="3.5"
+                strokeDasharray={circumference}
+                initial={{ strokeDashoffset: circumference }}
+                animate={{ strokeDashoffset: strokeDashoffset }}
+                transition={{ duration: 1, delay: 0.1 + index * 0.03, ease: 'easeOut' }}
+                strokeLinecap="round"
+                stroke="currentColor"
+                fill="transparent"
+              />
+            </svg>
+            <span className="absolute text-[11px] font-mono font-bold text-white">
+              {skill.level}%
+            </span>
+          </div>
+
+          <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-gray-400">
+            {skill.level >= 80 ? 'Advanced' : skill.level >= 45 ? 'Intermediate' : 'Foundational'}
+          </span>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Modern Multi-Domain Tech Matrix Component with 4 rows x 2 columns & Arrow Pagination
+const ModernDomainMatrix = () => {
+  const [activeDomain, setActiveDomain] = useState('cloud');
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const domains = [
+    {
+      id: 'cloud',
+      label: 'Cloud Engineering',
+      count: cloudEngineeringSkills.length,
+      skills: cloudEngineeringSkills,
+      description: 'Production-grade cloud architecture, multi-region AWS topology, VPC networking, declarative Terraform IaC, container orchestration, and automated DevSecOps pipelines.',
+      badge: 'Core Competency',
+      badgeColor: 'border-brand-cyan/40 text-brand-cyan bg-brand-cyan/10',
+      avgLevel: Math.round(cloudEngineeringSkills.reduce((acc, s) => acc + s.level, 0) / cloudEngineeringSkills.length)
+    },
+    {
+      id: 'data',
+      label: 'Data Engineering (Enthusiast)',
+      count: dataEngineeringSkills.length,
+      skills: dataEngineeringSkills,
+      description: 'Enthusiast exploration into distributed message streams, ETL automation, and scalable database schemas. Realistically calibrated for foundational learning alongside DevOps.',
+      badge: 'Enthusiast / Exploratory',
+      badgeColor: 'border-brand-purple/40 text-purple-300 bg-brand-purple/10',
+      avgLevel: Math.round(dataEngineeringSkills.reduce((acc, s) => acc + s.level, 0) / dataEngineeringSkills.length)
+    },
+    {
+      id: 'mern',
+      label: 'MERN Full-Stack',
+      count: mernStackSkills.length,
+      skills: mernStackSkills,
+      description: 'Reactive full-stack web architectures featuring componentized React SPAs, Node/Express asynchronous microservices, and MongoDB data persistence.',
+      badge: 'Application Tier',
+      badgeColor: 'border-emerald-400/40 text-emerald-300 bg-emerald-500/10',
+      avgLevel: Math.round(mernStackSkills.reduce((acc, s) => acc + s.level, 0) / mernStackSkills.length)
+    },
+    {
+      id: 'all',
+      label: 'All Disciplines',
+      count: cloudEngineeringSkills.length + dataEngineeringSkills.length + mernStackSkills.length,
+      skills: [...cloudEngineeringSkills, ...dataEngineeringSkills, ...mernStackSkills],
+      description: 'A unified directory across cloud architecture, data pipelines, and full-stack software applications.',
+      badge: 'Cross-Disciplinary',
+      badgeColor: 'border-white/20 text-gray-300 bg-white/5',
+      avgLevel: Math.round(
+        [...cloudEngineeringSkills, ...dataEngineeringSkills, ...mernStackSkills].reduce((acc, s) => acc + s.level, 0) /
+        (cloudEngineeringSkills.length + dataEngineeringSkills.length + mernStackSkills.length)
+      )
+    }
+  ];
+
+  const currentDomainInfo = domains.find(d => d.id === activeDomain) || domains[0];
+
+  const handleDomainChange = (id) => {
+    setActiveDomain(id);
+    setCurrentPage(0);
+  };
+
+  const itemsPerPage = 8; // 8 cards per page: 4 rows x 2 columns
+  const totalPages = Math.ceil(currentDomainInfo.skills.length / itemsPerPage);
+
+  const handleNext = () => setCurrentPage((prev) => (prev + 1) % totalPages);
+  const handlePrev = () => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+
+  const visibleSkills = currentDomainInfo.skills.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
+
+  return (
+    <div className="w-full mt-12 flex flex-col gap-8">
+      {/* Matrix Controls & Domain Tabs */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-white/5 pb-6">
+        <div>
+          <h3 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+            <span>Specialized Engineering Domains</span>
+          </h3>
+          <p className="text-gray-400 text-sm mt-1">Interactive capability matrix across cloud, data, and application stacks.</p>
+        </div>
+
+        {/* Tab Pills */}
+        <div className="flex flex-wrap items-center gap-2 p-1.5 bg-[#0a0a0f]/90 border border-white/10 rounded-2xl backdrop-blur-xl w-max max-w-full">
+          {domains.map((domain) => (
+            <button
+              key={domain.id}
+              onClick={() => handleDomainChange(domain.id)}
+              className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
+                activeDomain === domain.id
+                  ? 'text-white'
+                  : 'text-gray-400 hover:text-gray-200'
+              }`}
+            >
+              {activeDomain === domain.id && (
+                <motion.div
+                  layoutId="activeDomainPill"
+                  className="absolute inset-0 bg-gradient-to-r from-brand-cyan/20 to-brand-purple/20 border border-brand-cyan/50 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.25)]"
+                  transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{domain.label}</span>
+              <span className={`relative z-10 text-[10px] font-mono px-2 py-0.5 rounded-full ${
+                activeDomain === domain.id ? 'bg-brand-cyan/20 text-brand-cyan font-bold' : 'bg-white/5 text-gray-500'
+              }`}>
+                {domain.count}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div
-        className="w-full overflow-hidden"
-        style={{ maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}
+      {/* Domain HUD Banner */}
+      <motion.div
+        key={currentDomainInfo.id}
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="p-6 rounded-2xl bg-gradient-to-r from-[#0d0e15]/90 via-[#10111a]/90 to-[#0d0e15]/90 border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xl relative overflow-hidden"
       >
-        <motion.div
-          animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
-          transition={{ repeat: Infinity, ease: "linear", duration: calculatedDuration }}
-          className="flex items-center gap-6 w-max py-4"
-        >
-          {duplicatedSkills.map((skill, index) => (
-            <div key={`${skill.name}-${index}`} className="w-48 sm:w-56 shrink-0">
-              <SkillCard skill={skill} index={index} isMarquee={true} />
-            </div>
-          ))}
-        </motion.div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/5 rounded-full blur-3xl pointer-events-none -z-0"></div>
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-2 flex-wrap">
+            <h4 className="text-xl font-bold text-white tracking-tight">{currentDomainInfo.label}</h4>
+            <span className={`text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${currentDomainInfo.badgeColor} font-semibold`}>
+              {currentDomainInfo.badge}
+            </span>
+          </div>
+          <p className="text-sm text-gray-400 max-w-3xl leading-relaxed">
+            {currentDomainInfo.description}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-4 relative z-10 flex-shrink-0">
+          <div className="px-5 py-3 rounded-xl bg-black/40 border border-white/5 flex flex-col items-center">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400">Domain Avg</span>
+            <span className="text-xl font-bold font-mono text-brand-cyan">{currentDomainInfo.avgLevel}%</span>
+          </div>
+          <div className="px-5 py-3 rounded-xl bg-black/40 border border-white/5 flex flex-col items-center">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400">Total Tools</span>
+            <span className="text-xl font-bold font-mono text-brand-purple">{currentDomainInfo.count}</span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* 4 Rows x 2 Columns Grid with Navigation Arrows */}
+      <div className="relative min-h-[440px]">
+        {totalPages > 1 && (
+          <button
+            onClick={handlePrev}
+            className="absolute -left-4 md:-left-8 lg:-left-14 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-11 md:h-11 flex items-center justify-center bg-[#0a0a0f]/90 backdrop-blur-xl border border-white/10 rounded-full hover:bg-brand-cyan/20 hover:border-brand-cyan/50 text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]"
+            aria-label="Previous Skills Page"
+          >
+            <FaChevronLeft size={16} className="text-brand-cyan" />
+          </button>
+        )}
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`${activeDomain}-page-${currentPage}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.22 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full"
+          >
+            {visibleSkills.map((skill, index) => (
+              <ModernSkillCard
+                key={`${currentDomainInfo.id}-${skill.name}-${index}`}
+                skill={skill}
+                index={index}
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {totalPages > 1 && (
+          <button
+            onClick={handleNext}
+            className="absolute -right-4 md:-right-8 lg:-right-14 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-11 md:h-11 flex items-center justify-center bg-[#0a0a0f]/90 backdrop-blur-xl border border-white/10 rounded-full hover:bg-brand-cyan/20 hover:border-brand-cyan/50 text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]"
+            aria-label="Next Skills Page"
+          >
+            <FaChevronRight size={16} className="text-brand-cyan" />
+          </button>
+        )}
       </div>
+
+      {/* Pagination Footer Controls */}
+      {totalPages > 1 && (
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/5 pt-4">
+          <p className="text-xs text-gray-500 font-mono">
+            Showing <span className="text-gray-300 font-bold">{currentPage * itemsPerPage + 1}–{Math.min((currentPage + 1) * itemsPerPage, currentDomainInfo.skills.length)}</span> of <span className="text-gray-300 font-bold">{currentDomainInfo.skills.length}</span> skills
+          </p>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handlePrev}
+              disabled={currentPage === 0}
+              className={`px-3 py-1.5 rounded-lg border text-xs flex items-center gap-1.5 transition-colors font-medium ${
+                currentPage === 0
+                  ? 'border-white/5 text-gray-600 cursor-not-allowed'
+                  : 'border-white/10 hover:border-brand-cyan/50 text-gray-300 hover:text-white bg-white/5'
+              }`}
+            >
+              <FaChevronLeft size={10} />
+              <span>Previous</span>
+            </button>
+
+            <span className="text-xs font-mono text-gray-400 px-3 py-1.5 rounded-lg bg-black/40 border border-white/5">
+              Page <span className="text-brand-cyan font-bold">{currentPage + 1}</span> of {totalPages}
+            </span>
+
+            <button
+              onClick={handleNext}
+              disabled={currentPage === totalPages - 1}
+              className={`px-3 py-1.5 rounded-lg border text-xs flex items-center gap-1.5 transition-colors font-medium ${
+                currentPage === totalPages - 1
+                  ? 'border-white/5 text-gray-600 cursor-not-allowed'
+                  : 'border-white/10 hover:border-brand-cyan/50 text-gray-300 hover:text-white bg-white/5'
+              }`}
+            >
+              <span>Next</span>
+              <FaChevronRight size={10} />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -428,9 +713,9 @@ const SkillsSection = () => {
           <p className="text-gray-400 mt-2 max-w-2xl">A comprehensive breakdown of my technical proficiency and expertise levels.</p>
         </motion.div>
 
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-20">
 
-          {/* Top Section: DevOps Skills */}
+          {/* Top Section: DevOps Skills Mesh */}
           <div className="w-full">
             <div className="flex items-center gap-4 mb-4 border-b border-brand-cyan/40 pb-3 inline-block">
               <h3 className="text-3xl font-bold text-white tracking-tight">DevOps & Cloud Infrastructure Mesh</h3>
@@ -438,24 +723,8 @@ const SkillsSection = () => {
             <DevOpsMeshChart skills={devOpsSkills} />
           </div>
 
-          {/* Bottom Sections: Marquee Tracks */}
-          <div className="flex flex-col gap-4 mt-8 w-full overflow-hidden">
-            <MarqueeRow
-              title="MERN Stack Development"
-              skills={mernStackSkills}
-              direction="left"
-              speedMultiplier={2.6}
-              colorClass="border-brand-purple/30"
-            />
-
-            <MarqueeRow
-              title="AI / ML & MLOps (Enthusiast)"
-              skills={aiMlSkills}
-              direction="right"
-              speedMultiplier={2.6} // Lower multiplier equals FASTER visual velocity
-              colorClass="border-brand-cyan/30"
-            />
-          </div>
+          {/* Bottom Section: Modern Engineering Domain Matrix */}
+          <ModernDomainMatrix />
 
         </div>
       </motion.div>

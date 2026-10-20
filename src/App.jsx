@@ -6,7 +6,7 @@ import OverviewSection from './components/OverviewSection';
 import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
 import SkillChartSection from './components/SkillChartSection';
-import EducationSection from './components/EducationSection';
+import ExperienceSection from './components/ExperienceSection';
 import CertificationsSection from './components/CertificationsSection';
 import ContentSection from './components/ContentSection';
 import ContactSection from './components/ContactSection';
@@ -31,7 +31,7 @@ function App() {
         <SkillsSection />
         <ProjectsSection />
         <SkillChartSection />
-        <EducationSection />
+        <ExperienceSection />
         <CertificationsSection />
         <ContentSection />
         <ContactSection />

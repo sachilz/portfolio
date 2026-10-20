@@ -104,7 +104,7 @@ const HeroSection = () => {
             <SocialIcon href="https://github.com/sachilz" Icon={FaGithub} />
             <SocialIcon href="https://www.linkedin.com/in/sachilz/" Icon={FaLinkedin} />
             <SocialIcon href="https://www.youtube.com/@NextOpz" Icon={FaYoutube} />
-            <SocialIcon href="https://medium.com/@dilshansachiya671_17974" Icon={FaMedium} />
+            <SocialIcon href="https://medium.com/@sachilz" Icon={FaMedium} />
           </div>
         </motion.div>
 

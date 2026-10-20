@@ -6,7 +6,7 @@ const socials = [
   { icon: FaGithub, href: 'https://github.com/sachilz', label: 'GitHub', hoverColor: '#ffffff' },
   { icon: FaLinkedin, href: 'https://www.linkedin.com/in/sachilz/', label: 'LinkedIn', hoverColor: '#0A66C2' },
   { icon: FaYoutube, href: 'https://www.youtube.com/@NextOpz', label: 'YouTube', hoverColor: '#FF0000' },
-  { icon: FaMedium, href: 'https://medium.com/@dilshansachiya671_17974', label: 'Medium', hoverColor: '#ffffff' },
+  { icon: FaMedium, href: 'https://medium.com/@sachilz', label: 'Medium', hoverColor: '#ffffff' },
 ];
 
 const Footer = () => {

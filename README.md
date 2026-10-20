@@ -104,7 +104,7 @@ This will build the image and start the application on the configured port.
 - **GitHub**: [@sachilz](https://github.com/sachilz)
 - **LinkedIn**: [Sachintha](https://www.linkedin.com/in/sachilz/)
 - **YouTube**: [NextOpz](https://www.youtube.com/@NextOpz)
-- **Medium**: [@dilshansachiya671_17974](https://medium.com/@dilshansachiya671_17974)
+- **Medium**: [@sachilz](https://medium.com/@sachilz)
 
 ---
 

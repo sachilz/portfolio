@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { devOpsSkills, mernStackSkills, aiMlSkills } from './SkillsSection';
+import { devOpsSkills, mernStackSkills, cloudEngineeringSkills, dataEngineeringSkills } from './SkillsSection';
 import { projects } from './ProjectsSection';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip } from 'recharts';
 
@@ -9,14 +9,21 @@ const getProjectCount = (skillName) => {
   const aliases = [name];
 
   // Custom mapping for specific skill names to project tags
-  if (name === 'ci/cd pipelines') aliases.push('jenkins', 'github actions', 'gitlab ci');
+  if (name.includes('ci/cd')) aliases.push('jenkins', 'github actions', 'gitlab ci');
   if (name === 'javascript') aliases.push('js');
-  if (name === 'docker') aliases.push('container');
-  if (name === 'aws') aliases.push('amazon web services');
-  if (name === 'mongodb') aliases.push('mongo');
+  if (name.includes('docker')) aliases.push('docker', 'container');
+  if (name.includes('aws')) aliases.push('aws', 'amazon web services', 'ec2', 'vpc');
+  if (name.includes('mongodb')) aliases.push('mongo', 'mongodb');
   if (name === 'node.js') aliases.push('nodejs', 'node');
   if (name === 'react') aliases.push('react.js', 'reactjs');
   if (name === 'express.js') aliases.push('express', 'expressjs');
+  if (name.includes('terraform')) aliases.push('terraform');
+  if (name.includes('ansible')) aliases.push('ansible');
+  if (name.includes('linux')) aliases.push('linux', 'ubuntu', 'centos');
+  if (name.includes('sql') || name.includes('database')) aliases.push('mariadb', 'mysql', 'sql');
+  if (name.includes('network')) aliases.push('vpc');
+  if (name.includes('security')) aliases.push('devsecops', 'sonarqube', 'trivy');
+  if (name === 'python') aliases.push('python', 'py');
 
   let count = 0;
   projects.forEach(p => {
@@ -28,8 +35,9 @@ const getProjectCount = (skillName) => {
 
 const rolesData = {
   "DevOps Infrastructure": devOpsSkills.map(s => ({ subject: s.name, value: s.level, count: getProjectCount(s.name) })),
+  "Cloud Engineering": cloudEngineeringSkills.map(s => ({ subject: s.name, value: s.level, count: getProjectCount(s.name) })),
+  "Data Engineering (Enthusiast)": dataEngineeringSkills.map(s => ({ subject: s.name, value: s.level, count: getProjectCount(s.name) })),
   "MERN Full-Stack": mernStackSkills.map(s => ({ subject: s.name, value: s.level, count: getProjectCount(s.name) })),
-  "AI & MLOps": aiMlSkills.map(s => ({ subject: s.name, value: s.level, count: getProjectCount(s.name) }))
 };
 
 const CustomTooltip = ({ active, payload }) => {

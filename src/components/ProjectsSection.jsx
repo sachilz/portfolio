@@ -1,9 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import project1 from '../assets/project-pic/DevSecOps MERN Pipeline on AWS.png';
 import project2 from '../assets/project-pic/Secure Multi-Tier MERN on AWS.png';
 import project3 from '../assets/project-pic/Cloud-Native DevSecOps Pipeline.png';
+import project4 from '../assets/project-pic/AWS Infrastructure Provisioning and Deployment Automation.png';
+import project5 from '../assets/project-pic/Automating AWS EC2 Server Configuration with Ansible.png';
+import project6 from '../assets/project-pic/Multi-OS Configuration Management Using Ansible.png';
 
 export const projects = [
   {
@@ -15,7 +18,7 @@ export const projects = [
   },
   {
     title: 'Secure Multi-Tier MERN Deployment: AWS VPC Networking & Docker Orchestration',
-    description: 'A production-style MERN To-Do application containerized with Docker, orchestrated using Docker Compose, and deployed with Nginx reverse proxy',
+    description: 'A production-style MERN To-Do application containerized with Docker, orchestrated using Docker Compose, and deployed with Nginx reverse proxy.',
     tech: ['React', 'Node.js', 'MongoDB', 'Docker', 'Jenkins', 'Nginx', 'AWS', 'VPC', 'EC2', 'ECR'],
     github: 'https://github.com/sachilz/Secure-Multi-Tier-MERN-Deployment-AWS.git',
     image: project2,
@@ -26,6 +29,27 @@ export const projects = [
     tech: ['Flask', 'Python', 'Docker', 'Jenkins', 'AWS', 'EC2', 'ECR', 'SonarQube', 'Trivy'],
     github: 'https://github.com/sachilz/Secure-Flask-Web-Application-on-AWS.git',
     image: project3,
+  },
+  {
+    title: 'AWS Infrastructure Provisioning & Deployment Automation',
+    description: 'End-to-end DevSecOps cloud architecture utilizing Terraform for VPC & EC2 provisioning, Ansible for automated Docker configuration, and a 14-stage Jenkins CI/CD pipeline with Gitleaks, SonarQube, and Trivy.',
+    tech: ['Terraform', 'Ansible', 'AWS', 'Docker', 'Jenkins', 'DevSecOps', 'SonarQube', 'Trivy'],
+    github: 'https://github.com/sachilz/AWS-Infrastructure-Provisioning-Deployment-Automation',
+    image: project4,
+  },
+  {
+    title: 'Automated Remote Server Configuration with Ansible & AWS',
+    description: 'Enterprise-ready IaC & configuration management automating AWS EC2 provisioning via Boto3, secure SSH authentication, and modular Ansible roles deploying an Apache web tier and MariaDB database tier.',
+    tech: ['Ansible', 'AWS', 'EC2', 'Python', 'Boto3', 'Apache', 'MariaDB', 'Linux'],
+    github: 'https://github.com/sachilz/Automating-AWS-EC2-server-configuration-with-Ansible',
+    image: project5,
+  },
+  {
+    title: 'Multi-OS Configuration Management Using Ansible on AWS',
+    description: 'Automated configuration management provisioning and managing heterogeneous Linux distributions (Ubuntu 22.04 LTS & CentOS Stream 10) on AWS EC2 using a centralized Ansible control node and dynamic conditionals.',
+    tech: ['Ansible', 'AWS', 'EC2', 'Ubuntu', 'CentOS', 'Linux', 'YAML'],
+    github: 'https://github.com/sachilz/Multi-OS-Configuration-Management-Using-Ansible',
+    image: project6,
   }
 ];
 

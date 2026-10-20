@@ -14,7 +14,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const links = ['Home', 'Skills', 'Projects', 'Chart', 'Certifications', 'Videos', 'Articles', 'Contact'];
+  const links = ['Home', 'Skills', 'Projects', 'Experience', 'Education', 'Certifications', 'Videos', 'Articles', 'Contact'];
 
   return (
     <>

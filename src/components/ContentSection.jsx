@@ -21,9 +21,9 @@ export const videos = [
 ];
 
 export const articles = [
-  { title: "C programming-Introduction", description: "Share my journey into web development starting from static websites and the fundamentals that...", date: "May 26, 2024", thumbnail: artImg1, link: "https://medium.com/@dilshansachiya671_17974/c-programming-introduction-9e07a18c8776" },
-  { title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", description: "A detailed breakdown of how to architecture and deploy a complete MERN stack application leveraging Docker and Nginx.", date: "April 03, 2026", thumbnail: artImg2, link: "https://medium.com/@dilshansachiya671_17974/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" },
-  { title: "What is MLOps: Why It's More Than Just Coding", description: "An exploration into the world of MLOps. Discover why deploying machine learning models requires more than just writing code.", date: "April 09, 2026", thumbnail: artImg3, link: "" }
+  { title: "C programming-Introduction", description: "Share my journey into web development starting from static websites and the fundamentals that...", date: "May 26, 2024", thumbnail: artImg1, link: "https://medium.com/@sachilz/c-programming-introduction-9e07a18c8776" },
+  { title: "Deep Dive: Architecting a MERN App with Docker & Nginx Reverse Proxy", description: "A detailed breakdown of how to architecture and deploy a complete MERN stack application leveraging Docker and Nginx.", date: "April 03, 2026", thumbnail: artImg2, link: "https://medium.com/@sachilz/deep-dive-architecting-a-mern-app-with-docker-nginx-reverse-proxy-49c45d3816ab" },
+  { title: "What is MLOps: Why It's More Than Just Coding", description: "An exploration into the world of MLOps. Discover why deploying machine learning models requires more than just writing code.", date: "April 09, 2026", thumbnail: artImg3, link: "https://medium.com/@sachilz" }
 ];
 
 const VideoCard = ({ vid, index }) => {
