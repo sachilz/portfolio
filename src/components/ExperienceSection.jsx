@@ -353,18 +353,6 @@ const ExperienceSection = () => {
                 </span>
               </button>
             </div>
-
-            {activeTab === 'experience' && (
-              <a
-                href="https://www.linkedin.com/in/sachilz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden lg:inline-flex items-center gap-2 border border-blue-500/30 hover:border-blue-500 bg-blue-500/10 text-blue-400 hover:text-white px-4 py-2.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap"
-              >
-                <FaLinkedin size={14} />
-                <span>LinkedIn</span>
-              </a>
-            )}
           </div>
         </div>
 
