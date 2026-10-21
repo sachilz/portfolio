@@ -94,7 +94,7 @@ const HeroSection = () => {
 
           {/* View / Download CV Command Button */}
           <a 
-            href="https://drive.google.com/file/d/1Z-HSeh-Pmcaes_qzHVhNtpY5u_RftR5a/view?usp=drive_link" 
+            href="https://drive.google.com/file/d/1Xcez1miyc_EFcqAbbgjq3Fu8wqWz_1Vk/view?usp=drive_link" 
             target="_blank"
             rel="noopener noreferrer"
             className="relative group cursor-pointer flex items-center bg-[#0a0d14]/90 hover:bg-brand-cyan/10 border border-brand-cyan/30 hover:border-brand-cyan rounded-xl px-5 py-3 transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,240,255,0.25)] w-full md:w-auto justify-center"
