@@ -92,10 +92,11 @@ const HeroSection = () => {
             </span>
           </a>
 
-          {/* Curl / Download CV Command Button */}
+          {/* View / Download CV Command Button */}
           <a 
-            href="/resume.pdf" 
-            download 
+            href="https://drive.google.com/file/d/1Z-HSeh-Pmcaes_qzHVhNtpY5u_RftR5a/view?usp=drive_link" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="relative group cursor-pointer flex items-center bg-[#0a0d14]/90 hover:bg-brand-cyan/10 border border-brand-cyan/30 hover:border-brand-cyan rounded-xl px-5 py-3 transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,240,255,0.25)] w-full md:w-auto justify-center"
           >
             <FaDownload className="text-brand-cyan text-sm mr-2 group-hover:-translate-y-0.5 transition-transform" />
