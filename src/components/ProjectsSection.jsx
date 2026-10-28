@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaChevronLeft, FaChevronRight, FaTerminal } from 'react-icons/fa';
 import project1 from '../assets/project-pic/AWS DevSecOps MERN Architecture Diagram.png';
-import project2 from '../assets/project-pic/Secure Multi-Tier MERN on AWS.png';
+import project2 from '../assets/project-pic/AWS MERN Three-Tier Architecture Diagram.png';
 import project3 from '../assets/project-pic/Cloud-Native DevSecOps Pipeline.png';
 import project4 from '../assets/project-pic/AWS Infrastructure Provisioning and Deployment Automation.png';
 import project5 from '../assets/project-pic/Automating AWS EC2 Server Configuration with Ansible.png';
@@ -150,10 +150,10 @@ const ProjectCard = ({ project }) => {
           </div>
 
           <div className="flex flex-wrap gap-4 mt-auto pt-2 font-mono-code">
-            <a 
-              href={project.github} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-emerald-500/40 hover:border-emerald-300 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all w-max flex-shrink-0 shadow-sm"
             >
               <FaGithub size={14} />
@@ -273,16 +273,14 @@ const ProjectsSection = () => {
                 <button
                   key={cat}
                   onClick={() => handleCategorySelect(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-2 ${
-                    isActive
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-2 ${isActive
                       ? 'bg-emerald-500 text-black font-bold shadow-[0_0_15px_rgba(16,185,129,0.35)]'
                       : 'text-gray-400 hover:text-white hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   <span>{cat}</span>
-                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                    isActive ? 'bg-black/30 text-black' : 'bg-white/10 text-gray-400'
-                  }`}>
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${isActive ? 'bg-black/30 text-black' : 'bg-white/10 text-gray-400'
+                    }`}>
                     {count}
                   </span>
                 </button>
@@ -344,11 +342,10 @@ const ProjectsSection = () => {
               <button
                 onClick={handlePrev}
                 disabled={currentPage === 0}
-                className={`px-3 py-1.5 rounded-lg border text-xs flex items-center gap-1.5 transition-colors ${
-                  currentPage === 0
+                className={`px-3 py-1.5 rounded-lg border text-xs flex items-center gap-1.5 transition-colors ${currentPage === 0
                     ? 'border-white/5 text-gray-600 cursor-not-allowed'
                     : 'border-white/10 hover:border-emerald-500/50 text-gray-300 hover:text-white bg-white/5'
-                }`}
+                  }`}
               >
                 <FaChevronLeft size={10} />
                 <span>Previous</span>
@@ -361,11 +358,10 @@ const ProjectsSection = () => {
               <button
                 onClick={handleNext}
                 disabled={currentPage === totalPages - 1}
-                className={`px-3 py-1.5 rounded-lg border text-xs flex items-center gap-1.5 transition-colors ${
-                  currentPage === totalPages - 1
+                className={`px-3 py-1.5 rounded-lg border text-xs flex items-center gap-1.5 transition-colors ${currentPage === totalPages - 1
                     ? 'border-white/5 text-gray-600 cursor-not-allowed'
                     : 'border-white/10 hover:border-emerald-500/50 text-gray-300 hover:text-white bg-white/5'
-                }`}
+                  }`}
               >
                 <span>Next</span>
                 <FaChevronRight size={10} />
