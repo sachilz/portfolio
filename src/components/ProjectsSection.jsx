@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaChevronLeft, FaChevronRight, FaTerminal } from 'react-icons/fa';
 import project1 from '../assets/project-pic/AWS DevSecOps MERN Architecture Diagram.png';
 import project2 from '../assets/project-pic/AWS MERN Three-Tier Architecture Diagram.png';
-import project3 from '../assets/project-pic/Cloud-Native DevSecOps Pipeline.png';
+import project3 from '../assets/project-pic/Secure Flask DevSecOps Pipeline on AWS.png';
 import project4 from '../assets/project-pic/AWS Infrastructure Provisioning and Deployment Automation.png';
 import project5 from '../assets/project-pic/Automating AWS EC2 Server Configuration with Ansible.png';
 import project6 from '../assets/project-pic/Multi-OS Configuration Management Using Ansible.png';
