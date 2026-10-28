@@ -10,8 +10,17 @@ import project6 from '../assets/project-pic/Multi-OS Configuration Management Us
 import project7 from '../assets/project-pic/IntelliTutor AI Microservices Platform.png';
 import project8 from '../assets/project-pic/Career Advisor Agentic AI.png';
 import project9 from '../assets/project-pic/FND Neural Optimization.png';
+import project10 from '../assets/project-pic/Cloud-Native Authentication Application Deployment on Kubernetes.png';
 
 export const projects = [
+  {
+    title: 'Cloud-Native Authentication App: Kubernetes & Helm Deployment',
+    description: 'Multi-tier cloud-native authentication and task tracking application containerized with Docker and orchestrated on Minikube Kubernetes using declarative K8s manifests, Helm 3 packaging, ConfigMaps, Secrets, health probes, and PostgreSQL PVC.',
+    tech: ['Kubernetes', 'Minikube', 'Helm', 'Docker', 'React', 'Node.js', 'PostgreSQL', 'Nginx'],
+    github: 'https://github.com/sachilz/Cloud-Native-Authentication-Application-Deployment-on-Kubernetes',
+    image: project10,
+    category: 'DevOps & Cloud'
+  },
   {
     title: 'Automated DevSecOps Pipeline: Securing & Deploying a MERN Stack App on AWS',
     description: 'A containerized MERN stack application featuring an Nginx reverse proxy, Docker Compose orchestration, and seamless service communication.',

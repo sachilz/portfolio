@@ -20,7 +20,9 @@ const getProjectCount = (skillName) => {
   if (name.includes('terraform')) aliases.push('terraform');
   if (name.includes('ansible')) aliases.push('ansible');
   if (name.includes('linux')) aliases.push('linux', 'ubuntu', 'centos');
-  if (name.includes('sql') || name.includes('database')) aliases.push('mariadb', 'mysql', 'sql');
+  if (name.includes('sql') || name.includes('database')) aliases.push('mariadb', 'mysql', 'sql', 'postgresql', 'postgres');
+  if (name.includes('postgresql')) aliases.push('postgresql', 'postgres');
+  if (name.includes('kubernetes')) aliases.push('kubernetes', 'minikube', 'k8s', 'helm');
   if (name.includes('network')) aliases.push('vpc');
   if (name.includes('security')) aliases.push('devsecops', 'sonarqube', 'trivy');
   if (name === 'python') aliases.push('python', 'py');

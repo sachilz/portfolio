@@ -7,7 +7,7 @@ export const devOpsSkills = [
   { name: 'Linux', icon: FaLinux, color: 'text-yellow-500', level: 90, description: 'The core operating system powering my infrastructure, utilized for heterogeneous multi-OS management (Ubuntu, CentOS), package workflows, systemd daemons, and secure shell automation.' },
   { name: 'AWS', icon: FaAws, color: 'text-orange-500', level: 88, description: 'Core cloud provider used to architect VPC networking, public route tables, security groups, EC2 instances, ECR repositories, and IAM programmatic access.' },
   { name: 'Docker', icon: FaDocker, color: 'text-blue-500', level: 95, description: 'Essential containerization engine guaranteeing isolated, strictly reproducible software environments from local testing straight into production.' },
-  { name: 'Kubernetes', icon: SiKubernetes, color: 'text-blue-600', level: 10, description: 'Industry-standard orchestration layer natively managing containerized workloads, auto-scaling operations, and self-healing deployment meshes.' },
+  { name: 'Kubernetes', icon: SiKubernetes, color: 'text-blue-600', level: 80, description: 'Industry-standard orchestration layer managing multi-tier microservices, Pods, Deployments, ClusterIP & NodePort Services, PVC storage, and Helm 3 charts on Minikube.' },
   { name: 'Terraform', icon: SiTerraform, color: 'text-purple-500', level: 80, description: 'Infrastructure as Code (IaC) layer utilized to declaratively build custom VPCs, route tables, subnets, and EC2 resources with reproducible lifecycle state.' },
   { name: 'Ansible', icon: SiAnsible, color: 'text-red-500', level: 85, description: 'Configuration management platform executing automated playbooks, modular roles, and multi-OS server fleet provisioning across Ubuntu and CentOS.' },
   { name: 'Prometheus', icon: SiPrometheus, color: 'text-orange-400', level: 10, description: 'Centralized time-series metrics core dedicated to continuously monitoring system-level events and generating high-accuracy observability telemetry.' },
@@ -23,14 +23,14 @@ export const cloudEngineeringSkills = [
   { name: 'CI/CD Automation', icon: FaGithub, color: 'text-white', level: 95, category: 'Delivery Pipeline', tagline: 'Jenkins Multi-Stage Pipelines with Automated Security Scanning', status: 'Core' },
   { name: 'Cloud Networking', icon: FaNetworkWired, color: 'text-cyan-400', level: 85, category: 'Networking', tagline: 'Custom VPC Subnets, Internet Gateways & CIDR Routing', status: 'Core' },
   { name: 'Cloud Security', icon: FaShieldAlt, color: 'text-emerald-400', level: 85, category: 'DevSecOps', tagline: 'Pre-Deployment Gitleaks, SonarQube & Trivy Security Gates', status: 'Core' },
-  { name: 'Kubernetes', icon: SiKubernetes, color: 'text-blue-600', level: 25, category: 'Orchestration', tagline: 'Foundational Container Pods, Deployments & Cluster Concepts', status: 'Exploring' },
+  { name: 'Kubernetes', icon: SiKubernetes, color: 'text-blue-600', level: 80, category: 'Orchestration', tagline: 'Minikube Clusters, Declarative Manifests, Helm 3 & Health Probes', status: 'Core' },
 ];
 
 export const dataEngineeringSkills = [
   { name: 'Python', icon: FaPython, color: 'text-yellow-400', level: 60, category: 'Scripting', tagline: 'Automated Cloud Scripting, Boto3 SDK & Data Processing', status: 'Scripting' },
   { name: 'MongoDB', icon: SiMongodb, color: 'text-green-500', level: 50, category: 'NoSQL Database', tagline: 'Document Store Schemas, Queries & Data Aggregations', status: 'Applied' },
   { name: 'SQL / Databases', icon: FaDatabase, color: 'text-blue-400', level: 40, category: 'Relational DB', tagline: 'Relational Schemas, CRUD Queries & MariaDB Server Setup', status: 'Foundational' },
-  { name: 'PostgreSQL', icon: SiPostgresql, color: 'text-indigo-400', level: 25, category: 'RDBMS', tagline: 'Structured Data Storage & Relational Architecture Concepts', status: 'Enthusiast' },
+  { name: 'PostgreSQL', icon: SiPostgresql, color: 'text-indigo-400', level: 65, category: 'RDBMS', tagline: 'Stateful Container Persistence with Kubernetes PVC & Migrations', status: 'Applied' },
   { name: 'Data Pipelines', icon: FaChartLine, color: 'text-cyan-400', level: 20, category: 'Pipeline Design', tagline: 'Foundational ETL Flow Design & Automated Data Syncing', status: 'Enthusiast' },
   { name: 'Apache Kafka', icon: SiApachekafka, color: 'text-red-500', level: 15, category: 'Event Streaming', tagline: 'Distributed Pub/Sub Topics & Real-Time Event Stream Concepts', status: 'Enthusiast' },
   { name: 'Apache Spark', icon: SiApachespark, color: 'text-orange-500', level: 12, category: 'Big Data Processing', tagline: 'Distributed Batch Processing & Cluster Computation Theory', status: 'Enthusiast' },
