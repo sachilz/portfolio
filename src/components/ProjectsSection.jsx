@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaChevronLeft, FaChevronRight, FaTerminal } from 'react-icons/fa';
-import project1 from '../assets/project-pic/DevSecOps MERN Pipeline on AWS.png';
+import project1 from '../assets/project-pic/AWS DevSecOps MERN Architecture Diagram.png';
 import project2 from '../assets/project-pic/Secure Multi-Tier MERN on AWS.png';
 import project3 from '../assets/project-pic/Cloud-Native DevSecOps Pipeline.png';
 import project4 from '../assets/project-pic/AWS Infrastructure Provisioning and Deployment Automation.png';
